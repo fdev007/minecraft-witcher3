@@ -1,0 +1,264 @@
+# Конфиг моста Minecraft <-> The Witcher 3 (этап 1). Значения по умолчанию — в config.py, здесь они же с пояснениями.
+# Неизвестный ключ — ошибка при старте. Порты переопределяются флагами: --w3-port 37101, --mc-port 25600.
+
+[w3]
+host = "127.0.0.1"
+port = 37001                 # 37001 — игра сама по себе (37000 — игра внутри REDkit, мост его не пробует)
+connect_timeout_s = 3.0      # отказ на localhost в Windows приходит только через ~2 с
+reconnect_min_s = 0.5        # переподключение: 0,5 -> 1 -> 2 ... -> reconnect_max_s
+reconnect_max_s = 10.0
+max_inflight = 8             # всех exec в полёте одновременно (опрос, пакеты, рельеф, луч, уведомления)
+scriptslog = ""              # запасной канал ответов: "" выкл, "auto" = Documents\The Witcher 3\scriptslog.txt, или путь
+
+[poll]
+hz = 15.0                    # mcw_poll в секунду (10–20 по docs/PLAN.md); игра отвечает медленнее — частота = depth / RTT
+depth = 2                    # глубина конвейера mcw_poll
+timeout_s = 2.0              # таймаут одного опроса (и мелких вызовов: count, notify, boom)
+pos_keepalive_s = 1.0        # pos моду шлём при изменении и не реже раза в столько секунд
+
+[mc]
+host = "127.0.0.1"
+port = 25600
+radius_chunks = 4            # hello.want.radius; мод ограничит view-distance сервера
+connect_timeout_s = 3.0
+reconnect_min_s = 0.5
+reconnect_max_s = 10.0
+freeze_on_pause = true       # Ведьмак на паузе, в меню, в сцене или не в мире -> сервер MC «tick freeze» (мобы и время
+                             # стоят, игрок клиента ходит); снова в игре -> «tick unfreeze»
+
+[coords]
+y_offset = 0                 # mc.y = w.z + y_offset (spike/coords.py); подбирается под dimension_type
+
+[display]
+radius_m = 32.0              # показываем блоки не дальше (от Геральта до центра блока)
+max_entities = 2000          # и не больше стольких сущностей, ближние первыми
+reselect_move_m = 1.0        # пересчёт набора при сдвиге Геральта на столько (и при любом изменении зеркала)
+reselect_interval_s = 0.1    # не чаще
+default_template = 12        # индекс шаблона mcw_batch (batch_t в spike/templates.json): 0 cont_crate, 1 barrel, 12 _unknown
+hide = ["minecraft:water", "minecraft:lava", "minecraft:bubble_column", "minecraft:fire", "minecraft:soul_fire",
+        "minecraft:light", "minecraft:structure_void", "minecraft:moving_piston"]
+# не закрывают грань соседа (fnmatch по имени без [свойств])
+transparent = ["minecraft:water", "minecraft:lava", "minecraft:*glass*", "minecraft:*leaves", "minecraft:ice",
+               "minecraft:iron_bars", "minecraft:*_fence", "minecraft:*_fence_gate", "minecraft:*_wall",
+               "minecraft:*door", "minecraft:*_slab", "minecraft:*_stairs", "minecraft:ladder",
+               "minecraft:*torch", "minecraft:*rail", "minecraft:snow", "minecraft:*_carpet",
+               "minecraft:*sign", "minecraft:short_grass", "minecraft:tall_grass", "minecraft:*fern",
+               "minecraft:*_sapling", "minecraft:*flower*", "minecraft:dandelion", "minecraft:poppy",
+               "minecraft:*_tulip", "minecraft:*mushroom", "minecraft:sugar_cane", "minecraft:wheat",
+               "minecraft:chest", "minecraft:*_bed", "minecraft:cobweb", "minecraft:scaffolding"]
+
+[display.templates]          # имя блока (или полное состояние) -> индекс шаблона; не указан — default_template
+# 2..12 — блоки modMCWBlocks (tools/build_blocks.py, spike/templates.json, source "modMCWBlocks"); без этого мода в
+# <игра>\mods шаблоны не загрузятся, и mcw_batch посчитает каждый set ошибкой — тогда верните сюда 0 (cont_crate)
+"minecraft:grass_block" = 2
+"minecraft:dirt" = 3
+"minecraft:coarse_dirt" = 3
+"minecraft:stone" = 4
+"minecraft:cobblestone" = 5
+"minecraft:oak_log" = 6
+"minecraft:oak_planks" = 7
+"minecraft:sand" = 8
+"minecraft:crafting_table" = 9
+"minecraft:oak_leaves" = 10
+"minecraft:glass" = 11
+# "minecraft:tnt" = 1        # бочка — физический объект: сдвинется, и clear её не найдёт; на этапе 1 не советую
+
+[batch]
+bytes = 1900                 # потолок команды mcw_batch и mcw_ents в байтах UTF-8. Жёсткий предел exec — 2047 (замер
+                             # 5.00c: команду длиннее игра молча выбрасывает, ответа нет); больше 2047 конфиг не примет
+inflight = 2                 # пакетов в полёте
+timeout_s = 5.0              # потерян или просрочен пакет -> полная пересинхронизация
+
+[supervise]
+# Сторож процессов (supervise.py): нет связи с сервером MC дольше server_down_s — run_server.ps1 -Stop и запуск; клиент
+# не на связи (или на связи, но не в мире) дольше client_down_s при живом сервере — run_client.ps1 -Stop и запуск. Не чаще
+# min_interval_s на каждый. Выключить, если гасишь их руками и не хочешь, чтобы мост поднимал снова.
+enabled = true
+server = true
+client = true
+server_down_s = 20.0
+client_down_s = 15.0
+min_interval_s = 90.0
+timeout_s = 300.0            # запуск ждёт «Done» сервера / «жду мост» клиента не дольше
+server_script = "../mc/run_server.ps1"        # от папки моста
+client_script = "../mcclient/run_client.ps1"
+
+[skin]
+# Тело Стива со скином (modMCWModels, mcw_models.ws) на костях Геральта: видно в катсценах, диалогах, от третьего лица;
+# в режиме Стива от первого лица спрятано. Без мода (или пока игра не перезапущена после установки) — Геральт как был.
+enabled = true
+
+[solid]
+# Коллизия Ведьмака для физики клиента MC (режим Стива): дома, стены, полы, заборы, деревья, двери — mcw_cols.
+# Колонна без статики — одна земля; со статикой — 16 подколонн 25 см с твёрдыми промежутками.
+enabled = true
+radius_m = 8.0               # колонны вокруг игрока MC (ближние и те, что по ходу, первыми)
+rate_hz = 30.0               # mcw_cols в секунду, не больше (блок со статикой ~1 мс игрового кадра)
+inflight = 2
+per_call = 6                 # колонн в одном mcw_cols (ответ exec до 1999 байт: не влезшие игра вернёт «stop»)
+rescan_dz_m = 4.0            # игрок ушёл по высоте дальше — переспросить (окно ответа: ноги -8..+12 м)
+door_radius_m = 5.0          # колонны с дверью ближе этого переспрашивать каждые door_every_s
+door_every_s = 0.5
+keep_m = 40.0                # дальше — забыть
+max_columns = 256            # колонн в одном solid клиенту
+timeout_s = 2.0
+
+[ground]
+enabled = true
+radius_m = 24.0              # колонны рельефа вокруг Геральта (ближние первыми)
+rate_hz = 80.0               # mcw_ground в секунду, не больше (по рельефу ходит клиент MC — успевать впереди него)
+inflight = 4
+depth = 3                    # barrier на столько блоков вниз от верха колонны
+clear_dist_m = 96.0          # чанк с рельефом дальше этого -> ground_clear (0 — никогда). Песок на снятом barrier упадёт
+retry_none_s = 10.0          # колонну без опоры («ground 0 0») переспросить через столько
+send_interval_s = 0.25       # ground моду не чаще
+max_columns = 1024           # колонн в одном ground
+timeout_s = 2.0
+pause_rtt_ms = 250.0         # опрос отвечает дольше — новых mcw_ground не шлём (деградация: рельеф ждёт первым)
+batch_cols = 48              # mcw_grounds: колонн за вызов (мод с ней; без неё — по одной mcw_ground по rate_hz)
+batch_hz = 12.0              # mcw_grounds в секунду, не больше (48 x 12 ~ 580 колонн/с против 80 по одной)
+batch_inflight = 2
+lookahead_s = 1.0            # на ходу рельеф спрашивается вокруг точки впереди: ноги + скорость x столько секунд,
+lookahead_max_m = 16.0       # но не дальше этого (лошадь MC на полном скаку — 14 м/с)
+
+[resync]
+count_every_s = 2.0          # mcw_count раз в столько: 0 при непустой записи = загрузили сейв -> ресинк
+min_interval_s = 5.0         # ресинки по расхождению — не чаще; подряд — интервал удваивается до max_interval_s
+max_interval_s = 60.0
+clearall_timeout_s = 5.0
+
+[act]
+look_timeout_s = 1.0
+eps_m = 0.05                 # шаг по лучу внутрь/наружу поверхности при выборе клетки
+
+[input]
+enabled = true
+process = "witcher3.exe"     # клавиши работают, только когда на переднем плане окно этого процесса
+poll_hz = 100.0
+settings = ""                # input.settings для проверки конфликтов; "" = Documents\The Witcher 3\input.settings
+
+[input.bind]                 # имена — hotkeys.VK: буквы, цифры, F1..F24, NUMPAD0..9, MOUSE4/5, LBRACKET ...
+toggle = ["F2"]              # режим строительства вкл/выкл (без него break/place/слоты не работают)
+break = ["MOUSE4", "8"]      # ломать блок под прицелом камеры
+place = ["MOUSE5", "9"]      # поставить блок из выбранного слота
+slot_prev = ["LBRACKET"]
+slot_next = ["RBRACKET"]
+slot1 = ["NUMPAD1"]          # NumLock должен быть включён
+slot2 = ["NUMPAD2"]
+slot3 = ["NUMPAD3"]
+slot4 = ["NUMPAD4"]
+slot5 = ["NUMPAD5"]
+slot6 = ["NUMPAD6"]
+slot7 = ["NUMPAD7"]
+slot8 = ["NUMPAD8"]
+slot9 = ["NUMPAD9"]
+craft_menu = ["F3"]                   # список крафта: открыть / закрыть (текст — mcw_notify)
+craft_prev = ["PAGEUP", "SUBTRACT"]   # листать список: PageUp или NumPad -
+craft_next = ["PAGEDOWN", "ADD"]      # PageDown или NumPad +
+craft_do = ["0", "NUMPAD0"]           # скрафтить выбранное один раз
+summon = ["F6"]                       # тест: призвать ents.summon_type в ents.summon_dist_m перед Геральтом
+fp = ["F4"]                           # вид от первого лица: вкл/выкл (работает и вне режима строительства)
+inventory = ["E"]                     # режим Стива: инвентарь MC, если у Ведьмака нет подсказки взаимодействия (mcwf_interact)
+horse = ["X"]                         # режим Стива: лошадь Майнкрафта к Геральту (вне режима X — Плотва Ведьмака)
+
+[fp]                         # вид от первого лица (mcw_steve.ws: mcwf_on), docs/STEVE.md
+sens = 30                    # чувствительность мыши: сотые градуса на единицу оси (0,4 ед./пиксель -> 0,12 град./пиксель)
+start_on = false             # включать сразу при подключении к Ведьмаку
+fov = 0.0                    # FOV камеры от первого лица в градусах (mcwf_fov); 0 — как у шаблона камеры
+
+[client]                     # скрытый клиент Майнкрафта (..\mcclient, мод mcwc), docs/DEVELOPMENT.md «Что дальше», п. 1
+enabled = true               # false — без клиента: Геральт на сервере — марионетка, как раньше
+host = "127.0.0.1"
+port = 25601                 # -Dmcwc.port у клиента
+connect_timeout_s = 3.0
+reconnect_min_s = 0.5        # клиента нет — пробуем 0,5 -> 1 -> 2 ... -> reconnect_max_s
+reconnect_max_s = 5.0
+overlay = "../overlay/mcw_overlay.exe"   # картинка клиента поверх Ведьмака; "" — не запускать (overlay\build.bat)
+window = "MCW Client"        # заголовок окна клиента (Mcwc.TITLE)
+host_window = "The Witcher 3"
+block_witcher = true         # в режиме Стива блокировать Геральту удары, чутьё и бросок (mcwf_block): мышь — у MC
+drive = true                 # в режиме Стива ходит клиент (физика MC, без инерции Ведьмака): WASD и прочее из pass_drive —
+                             # ему, движение Геральта заблокировано, Геральт — кукла в ногах игрока MC, камера — в его глазу
+cursor_scale = 1.0           # курсор экранов MC: пикселей окна на единицу сдвига мыши (Raw Input)
+fov_axis = "v"               # FOV камеры Ведьмака вертикальный ("v", замер 2026-10-03: рамка MC легла на блок) или "h"
+
+[client.pass]                # клавиша Ведьмака (имена — как в input.bind) -> ввод клиента в режиме Стива:
+MOUSE1 = "btn:0"             # "btn:<n>" кнопка мыши GLFW (0 левая, 1 правая, 2 средняя), "key:<n>" — GLFW_KEY_*
+MOUSE2 = "btn:1"
+MOUSE3 = "btn:2"
+Q = "key:81"                 # выбросить предмет (знак Ведьмака в режиме Стива заблокирован)
+"1" = "key:49"          # слоты хотбара (мечи Ведьмака на 1/2 заблокированы)
+"2" = "key:50"
+"3" = "key:51"
+"4" = "key:52"
+"5" = "key:53"
+"6" = "key:54"
+"7" = "key:55"
+"8" = "key:56"
+"9" = "key:57"
+
+[client.pass_drive]          # то же, но только когда ходит клиент (client.drive): движение. Shift — присед, Ctrl — бег, как в MC
+W = "key:87"
+A = "key:65"
+S = "key:83"
+D = "key:68"
+SPACE = "key:32"
+LSHIFT = "key:340"
+LCTRL = "key:341"
+
+[notify]
+enabled = true
+min_interval_s = 0.75        # mcw_notify не чаще
+queue = 4                    # сообщений в очереди (лишние старые выбрасываются)
+hp = true                    # урон -> "HP x/20"
+inv = true                   # изменения инвентаря -> "+1 dirt"
+inv_window_s = 1.5           # копить изменения инвентаря столько перед сообщением
+
+[ents]                        # мобы Майнкрафта (поток ent) -> плейсхолдеры в Ведьмаке (mcw_ents), этап 5
+enabled = true
+radius_m = 32.0              # показываем мобов не дальше
+max = 32                     # и не больше стольких, ближние первыми (у мода 64 слота)
+hz = 10.0                    # mcw_ents не чаще (каждый move — TeleportWithRotation: чаще = плавнее, но дороже)
+timeout_s = 2.0              # пакет mcw_ents без ответа -> wipe и всё заново
+move_eps_m = 0.05            # move, если моб сдвинулся больше
+yaw_eps_deg = 5.0            # или повернулся больше
+default_template = 0         # моб без строки в [ents.templates]: индекс шаблона mcw_batch (0 cont_crate), -1 — не показывать
+items_notify = true          # предметы на земле: счётчик в mcw_notify (плейсхолдеров у них нет)
+items_radius_m = 8.0
+fuse_notify = true           # крипер зашипел -> mcw_notify
+summon_type = "minecraft:creeper"   # клавиша summon (тест)
+summon_dist_m = 6.0
+
+[ents.templates]             # тип моба -> индекс шаблона; -1 — не показывать
+"minecraft:creeper" = 0      # cont_crate: почему не бочка — docs/DEVELOPMENT.md, «Мобы»
+"minecraft:horse" = -1       # лошадь рисует mcw_models.ws по позе от клиента MC (horses), ящик не нужен
+
+[combat]                      # бой в режиме Стива (combat.py, mcw_combat.ws): docs/DEVELOPMENT.md «Что дальше», п. 4
+enabled = true
+radius_m = 24.0              # NPC Ведьмака не дальше этого -> прокси на сервере MC (в них целится и бьёт клиент MC)
+max = 16                     # и не больше стольких, ближние первыми
+hz = 30.0                    # mcw_npcs не чаще (позиции и скорости прокси; ещё и удары NPC по Геральту)
+timeout_s = 2.0
+ref_mc_dmg = 6.0             # удар MC в столько (полный удар железным мечом) = один удар Геральта его мечом: Ведьмак
+                             # считает удар Геральта (меч, статы, броня и сопротивления NPC) и умножает на урон MC / это
+npc_mc_hp = 20.0             # только без меча у Геральта: здоровье MC каждого NPC, удар в d снимает d/npc_mc_hp максимума
+heavy_dmg = 7.0              # удар не слабее (или крит) — тяжёлая реакция NPC, иначе лёгкая
+hurt_mult = 2.5              # удар NPC: доля жизненной силы Геральта x 20 x hurt_mult = урон игроку MC до брони и щита
+min_hurt = 0.25              # слабее — не шлём (царапины и эффекты)
+impact_delay_s = 0.2         # удар MC доходит до NPC через столько после замаха: NPC успевает парировать или отскочить,
+                             # как от удара Геральта (0 — сразу, без парирования и уклонений)
+
+[arrows]                      # стрелы MC в Ведьмаке: ванильная стрела лучников по позе от клиента (mcwa_arrows)
+enabled = true
+inflight = 2                 # mcwa_arrows в полёте не больше (кадр клиента ждёт)
+walls = true                 # стрелы MC втыкаются в дома, заборы и землю Ведьмака (путь стрелы -> mcw_path)
+
+[boom]
+enabled = true
+radius_m = 48.0              # explosion дальше от Геральта — без эффекта
+min_interval_s = 1.0
+
+[log]
+file = "logs/bridge.log"     # относительно папки моста
+level = "INFO"
+metrics_every_s = 10.0
