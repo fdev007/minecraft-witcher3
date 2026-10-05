@@ -1,0 +1,389 @@
+{
+ "meta": {
+  "started": "2026-10-03T15:36:18+0400",
+  "label": "мир",
+  "fake": false,
+  "host": "127.0.0.1",
+  "tests": [
+   "rtt",
+   "rate",
+   "frame",
+   "poll",
+   "echo",
+   "batch",
+   "charset",
+   "loglat"
+  ],
+  "args": {
+   "host": "127.0.0.1",
+   "port": 37001,
+   "label": "мир",
+   "out": "<repo>\\spike\\results",
+   "timeout": 3.0,
+   "bind_delay": 0.0,
+   "n": 300,
+   "reps": 10,
+   "depths": "1,2,4,8,16,32,64",
+   "bursts": "1,2,4,8,16,32",
+   "sizes_kb": "1",
+   "ops": "1,10,50",
+   "levels": "100,1000",
+   "spacing": 150,
+   "hold": 3.0,
+   "hi": 0,
+   "scriptslog": null,
+   "via_log": false,
+   "fake": false,
+   "fake_frame_ms": 16.7,
+   "fake_max_per_frame": 0,
+   "fake_per_line": false,
+   "fake_leading_status": false,
+   "fake_log_not_in_reply": false
+  },
+  "python": "3.12.0",
+  "platform": "Windows-11-10.0.26200-SP0"
+ },
+ "client": {
+  "port": 37001,
+  "via_log": false,
+  "bytes_sent": 239877,
+  "bytes_received": 336194,
+  "stream_resyncs": 0,
+  "bad_packets": 0,
+  "stats": {
+   "exec_sent": 3699,
+   "exec_done": 3699
+  }
+ },
+ "results": [
+  {
+   "test": "rtt",
+   "cmd": "mcw_ping",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.5,
+   "p95_ms": 25.96,
+   "p99_ms": 27.14,
+   "max_ms": 34.19,
+   "mean_ms": 24.62,
+   "calls_per_s": 40.5,
+   "engine_ms_delta_p50": 25,
+   "engine_ms_delta_min": 23
+  },
+  {
+   "test": "rate_depth_1",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.61,
+   "p95_ms": 25.82,
+   "p99_ms": 26.71,
+   "max_ms": 28.94,
+   "mean_ms": 24.64,
+   "calls_per_s": 40.4,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_2",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.54,
+   "p95_ms": 25.64,
+   "p99_ms": 26.47,
+   "max_ms": 26.69,
+   "mean_ms": 24.57,
+   "calls_per_s": 81.0,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_4",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.43,
+   "p95_ms": 25.48,
+   "p99_ms": 25.96,
+   "max_ms": 26.05,
+   "mean_ms": 24.39,
+   "calls_per_s": 162.9,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_8",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.59,
+   "p95_ms": 26.45,
+   "p99_ms": 27.41,
+   "max_ms": 27.47,
+   "mean_ms": 24.8,
+   "calls_per_s": 315.3,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_16",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 23.82,
+   "p95_ms": 24.79,
+   "p99_ms": 25.13,
+   "max_ms": 25.51,
+   "mean_ms": 23.76,
+   "calls_per_s": 647.9,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_32",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.24,
+   "p95_ms": 25.2,
+   "p99_ms": 25.35,
+   "max_ms": 25.79,
+   "mean_ms": 24.19,
+   "calls_per_s": 1202.8,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "rate_depth_64",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 23.55,
+   "p95_ms": 25.12,
+   "p99_ms": 25.57,
+   "max_ms": 25.58,
+   "mean_ms": 23.72,
+   "calls_per_s": 2401.8,
+   "not_ok": 0,
+   "lost": 0,
+   "errors": 0
+  },
+  {
+   "test": "frame_burst_1",
+   "reps": 10,
+   "calls": 10,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 1,
+   "execs_in_one_frame_p50": 1
+  },
+  {
+   "test": "frame_burst_2",
+   "reps": 10,
+   "calls": 20,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 2,
+   "execs_in_one_frame_p50": 2
+  },
+  {
+   "test": "frame_burst_4",
+   "reps": 10,
+   "calls": 40,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 4,
+   "execs_in_one_frame_p50": 4
+  },
+  {
+   "test": "frame_burst_8",
+   "reps": 10,
+   "calls": 80,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 8,
+   "execs_in_one_frame_p50": 8
+  },
+  {
+   "test": "frame_burst_16",
+   "reps": 10,
+   "calls": 160,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 16,
+   "execs_in_one_frame_p50": 16
+  },
+  {
+   "test": "frame_burst_32",
+   "reps": 10,
+   "calls": 320,
+   "bad": 0,
+   "frames_used_p50": 1,
+   "execs_in_one_frame_max": 32,
+   "execs_in_one_frame_p50": 32
+  },
+  {
+   "test": "poll",
+   "calls": 300,
+   "bad": 0,
+   "n": 300,
+   "p50_ms": 24.59,
+   "p95_ms": 25.75,
+   "p99_ms": 26.46,
+   "max_ms": 27.44,
+   "mean_ms": 24.6,
+   "reply_bytes": 218
+  },
+  {
+   "test": "echo_1kb",
+   "arg_bytes": 1024,
+   "packet_bytes": 1084,
+   "calls": 10,
+   "bad": 0,
+   "n": 10,
+   "p50_ms": 25.17,
+   "p95_ms": 26.82,
+   "p99_ms": 26.82,
+   "max_ms": 26.82,
+   "mean_ms": 25.41,
+   "near_limit": 0
+  },
+  {
+   "test": "batch_1",
+   "packet_bytes": 80,
+   "bytes_per_op": 80.0,
+   "calls": 20,
+   "bad": 0,
+   "set": {
+    "n": 10,
+    "p50_ms": 24.01,
+    "p95_ms": 24.56,
+    "p99_ms": 24.56,
+    "max_ms": 24.56,
+    "mean_ms": 23.99
+   },
+   "clear": {
+    "n": 10,
+    "p50_ms": 24.59,
+    "p95_ms": 25.35,
+    "p99_ms": 25.35,
+    "max_ms": 25.35,
+    "mean_ms": 24.54
+   },
+   "game_set_ms_p50": 0,
+   "ops_per_s": 41.1
+  },
+  {
+   "test": "batch_10",
+   "packet_bytes": 260,
+   "bytes_per_op": 26.0,
+   "calls": 20,
+   "bad": 0,
+   "set": {
+    "n": 10,
+    "p50_ms": 24.35,
+    "p95_ms": 24.65,
+    "p99_ms": 24.65,
+    "max_ms": 24.65,
+    "mean_ms": 24.26
+   },
+   "clear": {
+    "n": 10,
+    "p50_ms": 24.8,
+    "p95_ms": 25.77,
+    "p99_ms": 25.77,
+    "max_ms": 25.77,
+    "mean_ms": 24.97
+   },
+   "game_set_ms_p50": 0,
+   "ops_per_s": 404.4
+  },
+  {
+   "test": "batch_50",
+   "packet_bytes": 1060,
+   "bytes_per_op": 21.2,
+   "calls": 20,
+   "bad": 10,
+   "set": {
+    "n": 10,
+    "p50_ms": 24.08,
+    "p95_ms": 25.07,
+    "p99_ms": 25.07,
+    "max_ms": 25.07,
+    "mean_ms": 24.16
+   },
+   "clear": {
+    "n": 0,
+    "p50_ms": null,
+    "p95_ms": null,
+    "p99_ms": null,
+    "max_ms": null,
+    "mean_ms": null
+   },
+   "game_set_ms_p50": 1,
+   "ops_per_s": 1016.7
+  },
+  {
+   "test": "charset",
+   "calls": 96,
+   "bad": 2,
+   "bad_chars": "\"'\\ж",
+   "mangled": "\\ж",
+   "details": [
+    {
+     "char": "\"",
+     "got": "Warn: Failed to process command"
+    },
+    {
+     "char": "'",
+     "got": "Warn: Failed to process command"
+    },
+    {
+     "char": "\\",
+     "got": "[MCW#175066029] echo 4 a\\\\b\n[MCW#175066029] end\n"
+    },
+    {
+     "char": "ж",
+     "got": "[MCW#175066039] echo 4 aжb\n[MCW#175066039] end\n"
+    }
+   ]
+  },
+  {
+   "test": "loglat",
+   "calls": 200,
+   "bad": 0,
+   "log_end": {
+    "n": 200,
+    "p50_ms": 24.79,
+    "p95_ms": 26.99,
+    "p99_ms": 28.52,
+    "max_ms": 32.64,
+    "mean_ms": 24.66
+   },
+   "logchannel": {
+    "n": 200,
+    "p50_ms": 24.79,
+    "p95_ms": 26.99,
+    "p99_ms": 28.52,
+    "max_ms": 32.63,
+    "mean_ms": 24.65
+   },
+   "missing_end": 0,
+   "missing_chan": 0,
+   "wall_s": 4.95,
+   "logchannel_in_reply": 200,
+   "log_in_reply": 200,
+   "log_in_file": 200,
+   "path": "%USERPROFILE%\\Documents\\The Witcher 3\\scriptslog.txt",
+   "tail_polls": 1692
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "meta": {
+  "started": "2026-10-03T15:42:06+0400",
+  "label": "мир ночь, поле",
+  "fake": false,
+  "host": "127.0.0.1",
+  "tests": [
+   "stress"
+  ],
+  "args": {
+   "host": "127.0.0.1",
+   "port": 37001,
+   "label": "мир ночь, поле",
+   "out": "<repo>\\spike\\results",
+   "timeout": 3.0,
+   "bind_delay": 0.0,
+   "n": 300,
+   "reps": 10,
+   "depths": "1,2,4,8,16,32,64",
+   "bursts": "1,2,4,8,16,32",
+   "sizes_kb": "1,2,4,8,16,24,30",
+   "ops": "1,10,100,300",
+   "levels": "100,1000",
+   "spacing": 150,
+   "hold": 5.0,
+   "hi": 0,
+   "scriptslog": null,
+   "via_log": false,
+   "fake": false,
+   "fake_frame_ms": 16.7,
+   "fake_max_per_frame": 0,
+   "fake_per_line": false,
+   "fake_leading_status": false,
+   "fake_log_not_in_reply": false
+  },
+  "python": "3.12.0",
+  "platform": "Windows-11-10.0.26200-SP0"
+ },
+ "client": {
+  "port": 37001,
+  "via_log": false,
+  "bytes_sent": 22434,
+  "bytes_received": 29364,
+  "stream_resyncs": 0,
+  "bad_packets": 0,
+  "stats": {
+   "exec_sent": 403,
+   "exec_done": 403
+  }
+ },
+ "results": [
+  {
+   "test": "stress_100",
+   "calls": 1,
+   "bad": 1,
+   "spawned": null,
+   "game_spawn_ms": null,
+   "rtt_spawn_ms": 27.0,
+   "count_after": 0,
+   "hold_s": 5.0,
+   "ping_with_blocks": {
+    "n": 198,
+    "p50_ms": 25.19,
+    "p95_ms": 26.48,
+    "p99_ms": 26.93,
+    "max_ms": 27.78,
+    "mean_ms": 25.22
+   },
+   "ping_bad": 0,
+   "engine_ms_delta_p50": 25,
+   "cleared": 0,
+   "rtt_clear_ms": 24.6
+  },
+  {
+   "test": "stress_1000",
+   "calls": 1,
+   "bad": 1,
+   "spawned": null,
+   "game_spawn_ms": null,
+   "rtt_spawn_ms": 26.7,
+   "count_after": 0,
+   "hold_s": 5.0,
+   "ping_with_blocks": {
+    "n": 198,
+    "p50_ms": 25.14,
+    "p95_ms": 26.22,
+    "p99_ms": 27.02,
+    "max_ms": 27.88,
+    "mean_ms": 25.13
+   },
+   "ping_bad": 0,
+   "engine_ms_delta_p50": 25,
+   "cleared": 0,
+   "rtt_clear_ms": 25.6
+  }
+ ]
+}

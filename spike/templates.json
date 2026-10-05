@@ -1,0 +1,5159 @@
+{
+ "_about": "Кандидаты-шаблоны для блоков. Только метаданные из бандлов игры (без игровых файлов). Координаты — метры в пространстве сущности (Z вверх). bbox_min/bbox_max — AABB всех мешей (видимых и невидимых) с transform компонента как в шаблоне (pos + scale*bbox меша, поворот не учтён — флаг component_rotation). mesh_components — меш-компоненты по отдельности: pos, scale, rot компонента и mesh_bbox_* в пространстве меша; по ним coords.py считает bbox при SetScale из мода (SetScale заменяет scale компонента, pos остаётся). bundles — все бандлы, где лежит шаблон. batch_t — индекс шаблона в mcw_batch. physmat, collision_shapes, collision_tail3f — главного (самого объёмного) меша из collision.cache (tools/collcache.py show); collision_tail3f — полуразмеры только у одиночного box-шейпа. streamed=true: компонент лежит в streamingDataBuffer и грузится по дистанции; streamingDistance — из CEntity шаблона, единицы [проверить] (вероятно метры).",
+ "_generated_by": "tools/gen_templates.py (tools/w3bundle.py, cr2w.py, collcache.py)",
+ "templates": [
+  {
+   "id": "cont_crate",
+   "path": "gameplay\\containers\\_container_definitions\\_mesh_entities\\cont_crate.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle",
+    "world_bob_startup.bundle"
+   ],
+   "batch_t": 0,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\containers\\crate\\crate.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 10,
+   "bbox_min": [
+    -0.479,
+    -0.516,
+    -0.521
+   ],
+   "bbox_max": [
+    0.552,
+    0.514,
+    0.503
+   ],
+   "size": [
+    1.031,
+    1.03,
+    1.024
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.4791,
+      -0.5162,
+      -0.521
+     ],
+     "mesh_bbox_max": [
+      0.5521,
+      0.5139,
+      0.5026
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.517,
+    0.515,
+    0.513
+   ],
+   "autoHideDistance": 80.0,
+   "note": "основной куб спайка (batch t=0): голый CEntity, ящик ~1.03 м, pivot в центре; шаблон в бандле DLC bob"
+  },
+  {
+   "id": "barrel",
+   "path": "gameplay\\interactive_objects\\oil_barrel\\oil_barrel.w2ent",
+   "alias": "barrel",
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle",
+    "ep1.bundle",
+    "world_bob_startup.bundle",
+    "world_novigrad_startup.bundle",
+    "world_prolog_village_startup.bundle",
+    "world_prolog_village_winter_startup.bundle",
+    "world_skellige_startup.bundle"
+   ],
+   "batch_t": 1,
+   "entity_class": "COilBarrelEntity",
+   "components": [
+    "CDestructionSystemComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\containers\\barrel\\barel_oil_px.redapex"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": null,
+   "bbox_max": null,
+   "size": null,
+   "pivot": null,
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CDestructionSystemComponent",
+     "name": "CDestructionSystemComponentbarrel_skellige_px",
+     "mesh": "environment\\decorations\\containers\\barrel\\barel_oil_px.redapex",
+     "pos": [
+      0.0,
+      0.0,
+      0.5236
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": null,
+     "mesh_bbox_max": null,
+     "drawableFlags": "default",
+     "streamed": true
+    }
+   ],
+   "main_mesh": null,
+   "physmat": null,
+   "collision_shapes": null,
+   "collision_tail3f": null,
+   "autoHideDistance": null,
+   "note": "алиас barrel (batch t=1, mcw_boom): COilBarrelEntity, взрывается от SetOnFire; визуал — APEX-разрушаемый CDestructionSystemComponent, поэтому bbox по мешу не снят [проверить в игре]"
+  },
+  {
+   "id": "denied_area",
+   "path": "gameplay\\explorations_reference_entiti\\box_250cm.w2ent",
+   "alias": "denied_area",
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "gameplay\\explorations_reference_objects\\box_250cm.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 35,
+   "bbox_min": [
+    -1.25,
+    -1.25,
+    0.0
+   ],
+   "bbox_max": [
+    1.25,
+    1.25,
+    2.5
+   ],
+   "size": [
+    2.5,
+    2.5,
+    2.5
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent box_250cm",
+     "mesh": "gameplay\\explorations_reference_objects\\box_250cm.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -1.25,
+      -1.25,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      1.25,
+      1.25,
+      2.5
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "gameplay\\explorations_reference_objects\\box_250cm.w2mesh",
+   "physmat": "carpet",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    1.25,
+    1.25,
+    1.25
+   ],
+   "autoHideDistance": 100.0,
+   "note": "алиас denied_area: drawableFlags={} — НЕВИДИМ, только коллизия + 4 CExplorationComponent (лазание); pivot снизу; physmat carpet; для куба 1 м SetScale(0.4)"
+  },
+  {
+   "id": "box_05_05_1m",
+   "path": "quests\\sidequests\\skellige\\quest_files\\sq204_forest_spirit\\entities\\box_05_05_1m.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle",
+    "world_bob_startup.bundle",
+    "world_skellige_startup.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "engine\\meshes\\editor\\box.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": false,
+   "streamingDistance": 0,
+   "bbox_min": [
+    -0.25,
+    -0.25,
+    0.0
+   ],
+   "bbox_max": [
+    0.25,
+    0.25,
+    1.0
+   ],
+   "size": [
+    0.5,
+    0.5,
+    1.0
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent box_250cm",
+     "mesh": "engine\\meshes\\editor\\box.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.5
+     ],
+     "scale": [
+      0.5,
+      0.5,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "engine\\meshes\\editor\\box.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": 60.0,
+   "note": "невидимый коллайдер (drawableFlags={}), компонент НЕ стримится; эксперимент SetScale(1,1,1)+SetVisible(true) даст серый куб 1 м [проверить]"
+  },
+  {
+   "id": "ep2_loot_crafting__crate_close_a",
+   "path": "dlc\\bob\\data\\gameplay\\container_definitions\\ep2_loot_crafting__crate_close_a.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle",
+    "world_bob_startup.bundle"
+   ],
+   "entity_class": "W3AnimatedContainer",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\containers\\crates\\gen_crate_close_a.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -0.505,
+    -0.508,
+    0.007
+   ],
+   "bbox_max": [
+    0.502,
+    0.507,
+    0.943
+   ],
+   "size": [
+    1.007,
+    1.015,
+    0.936
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\containers\\crates\\gen_crate_close_a.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5053,
+      -0.5084,
+      0.007
+     ],
+     "mesh_bbox_max": [
+      0.5022,
+      0.507,
+      0.9434
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\containers\\crates\\gen_crate_close_a.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.502,
+    0.505,
+    0.469
+   ],
+   "autoHideDistance": 70.0,
+   "note": null
+  },
+  {
+   "id": "q704_ft_barrier_block",
+   "path": "dlc\\bob\\data\\quests\\main_quests\\quest_files\\q704b_fairy_tale\\entities\\q704_ft_barrier_block.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\architecture\\human\\blockout_box.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 6,
+   "bbox_min": [
+    -10.0,
+    -2.5,
+    0.0
+   ],
+   "bbox_max": [
+    10.0,
+    2.5,
+    40.0
+   ],
+   "size": [
+    20.0,
+    5.0,
+    40.0
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "blockout_box",
+     "mesh": "environment\\architecture\\human\\blockout_box.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      20.0,
+      5.0,
+      40.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      1.0
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\architecture\\human\\blockout_box.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": 40.0,
+   "note": null
+  },
+  {
+   "id": "q705_invisible_wall",
+   "path": "dlc\\bob\\data\\quests\\main_quests\\quest_files\\q705_epilog\\entities\\q705_invisible_wall.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{DF_ClimbBlock}"
+   ],
+   "streamed": true,
+   "streamingDistance": 11,
+   "bbox_min": [
+    -0.483,
+    -0.137,
+    0.0
+   ],
+   "bbox_max": [
+    0.52,
+    0.003,
+    2.664
+   ],
+   "size": [
+    1.003,
+    0.14,
+    2.664
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "box_stone",
+     "mesh": "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh",
+     "pos": [
+      -0.4709,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      0.135,
+      2.6645
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0123,
+      -1.0154,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.9906,
+      0.0247,
+      1.0
+     ],
+     "drawableFlags": "{DF_ClimbBlock}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.52,
+    0.5,
+    0.501
+   ],
+   "autoHideDistance": 60.0,
+   "note": null
+  },
+  {
+   "id": "water_barrier",
+   "path": "dlc\\bob\\data\\quests\\minor_quests\\quest_files\\mq7006_the_paths_of_destiny\\entities\\water_barrier.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CMeshComponent",
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\fx\\quest\\mq7006\\waterfall_barrier.w2mesh",
+    "engine\\meshes\\editor\\box.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 62,
+   "bbox_min": [
+    -11.11,
+    -8.178,
+    -18.212
+   ],
+   "bbox_max": [
+    11.11,
+    5.931,
+    0.433
+   ],
+   "size": [
+    22.22,
+    14.109,
+    18.645
+   ],
+   "pivot": "offset",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CMeshComponent",
+     "name": "waterfall_flat",
+     "mesh": "dlc\\bob\\data\\fx\\quest\\mq7006\\waterfall_barrier.w2mesh",
+     "pos": [
+      0.0,
+      -8.1305,
+      -0.0513
+     ],
+     "scale": [
+      17.5396,
+      10.0,
+      3.2598
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.6334,
+      -0.0047,
+      -5.5712
+     ],
+     "mesh_bbox_max": [
+      0.6334,
+      1.4062,
+      0.0
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "box",
+     "mesh": "engine\\meshes\\editor\\box.w2mesh",
+     "pos": [
+      0.0,
+      0.8714,
+      -7.0668
+     ],
+     "scale": [
+      7.8644,
+      0.5,
+      15.0
+     ],
+     "rot": [
+      -0.0,
+      3.0296,
+      -0.0
+     ],
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\fx\\quest\\mq7006\\waterfall_barrier.w2mesh",
+   "physmat": null,
+   "collision_shapes": null,
+   "collision_tail3f": null,
+   "autoHideDistance": 450.0,
+   "note": null
+  },
+  {
+   "id": "mq7023_portal_trigger",
+   "path": "dlc\\bob\\data\\quests\\minor_quests\\quest_files\\mq7023_mutations\\entities\\mq7023_portal_trigger.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "W3MonsterClue",
+   "components": [
+    "CRigidMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -0.349,
+    -0.304,
+    -0.584
+   ],
+   "bbox_max": [
+    0.429,
+    0.373,
+    0.66
+   ],
+   "size": [
+    0.778,
+    0.677,
+    1.244
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CRigidMeshComponent",
+     "name": "box_stone",
+     "mesh": "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh",
+     "pos": [
+      -0.3391,
+      0.3574,
+      -0.5841
+     ],
+     "scale": [
+      0.7752,
+      0.6512,
+      1.2437
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0123,
+      -1.0154,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.9906,
+      0.0247,
+      1.0
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\blockout_base\\box_stone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.52,
+    0.5,
+    0.501
+   ],
+   "autoHideDistance": 60.0,
+   "note": null
+  },
+  {
+   "id": "toxic_gas_7m_cube",
+   "path": "dlc\\dlc10\\data\\quests\\entities\\toxic_gas_7m_cube.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "dlc0.bundle"
+   ],
+   "entity_class": "W3ToxicCloud",
+   "components": [],
+   "meshes": [],
+   "visible": false,
+   "drawableFlags": [],
+   "streamed": null,
+   "streamingDistance": 0,
+   "bbox_min": null,
+   "bbox_max": null,
+   "size": null,
+   "pivot": null,
+   "component_rotation": null,
+   "mesh_components": [],
+   "main_mesh": null,
+   "physmat": null,
+   "collision_shapes": null,
+   "collision_tail3f": null,
+   "autoHideDistance": null,
+   "note": null
+  },
+  {
+   "id": "q601_arena_block",
+   "path": "dlc\\ep1\\data\\quests\\quest_files\\q601_intro\\entities\\q601_arena_block.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "ep1.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CRigidMeshComponent"
+   ],
+   "meshes": [
+    "environment\\blockout_base\\box_stone.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default"
+   ],
+   "streamed": true,
+   "streamingDistance": 11,
+   "bbox_min": [
+    -0.099,
+    -0.193,
+    0.0
+   ],
+   "bbox_max": [
+    7.981,
+    0.005,
+    4.854
+   ],
+   "size": [
+    8.08,
+    0.198,
+    4.854
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CRigidMeshComponent",
+     "name": "CMeshComponent0",
+     "mesh": "environment\\blockout_base\\box_stone.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      8.0572,
+      0.1901,
+      4.8538
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0123,
+      -1.0154,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.9906,
+      0.0247,
+      1.0
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\blockout_base\\box_stone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.52,
+    0.5,
+    0.501
+   ],
+   "autoHideDistance": 75.0,
+   "note": null
+  },
+  {
+   "id": "on",
+   "path": "engine\\reference_level\\level_assets\\tags\\on.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle",
+    "world_world_startup.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "engine\\reference_level\\level_assets\\tags\\meshes\\on.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default"
+   ],
+   "streamed": true,
+   "streamingDistance": 138,
+   "bbox_min": [
+    -0.616,
+    -0.604,
+    0.0
+   ],
+   "bbox_max": [
+    0.616,
+    0.028,
+    0.255
+   ],
+   "size": [
+    1.232,
+    0.632,
+    0.255
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "text",
+     "mesh": "engine\\reference_level\\level_assets\\tags\\meshes\\on.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.6155,
+      -0.6035,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.6155,
+      0.0275,
+      0.255
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "engine\\reference_level\\level_assets\\tags\\meshes\\on.w2mesh",
+   "physmat": "default",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.616,
+    0.316,
+    0.127
+   ],
+   "autoHideDistance": 1000.0,
+   "note": null
+  },
+  {
+   "id": "sticker",
+   "path": "engine\\templates\\editor\\sticker.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [],
+   "meshes": [],
+   "visible": false,
+   "drawableFlags": [],
+   "streamed": null,
+   "streamingDistance": 0,
+   "bbox_min": null,
+   "bbox_max": null,
+   "size": null,
+   "pivot": null,
+   "component_rotation": null,
+   "mesh_components": [],
+   "main_mesh": null,
+   "physmat": null,
+   "collision_shapes": null,
+   "collision_tail3f": null,
+   "autoHideDistance": null,
+   "note": null
+  },
+  {
+   "id": "dao_pillar_arena",
+   "path": "gameplay\\abilities\\elemental\\elemental_dao_pillar_arena.w2ent",
+   "alias": "dao_pillar_arena",
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "W3DaoPillarObstacle",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "engine\\meshes\\editor\\box.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.622,
+    -0.52,
+    -0.134
+   ],
+   "bbox_max": [
+    0.622,
+    1.12,
+    2.134
+   ],
+   "size": [
+    1.244,
+    1.64,
+    2.268
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "engine\\meshes\\editor\\box.w2mesh",
+     "pos": [
+      0.0,
+      0.3,
+      1.0
+     ],
+     "scale": [
+      1.2438,
+      1.6404,
+      2.2687
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "engine\\meshes\\editor\\box.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": 60.0,
+   "note": null
+  },
+  {
+   "id": "crate__generic_crate__everywhere",
+   "path": "gameplay\\containers\\_container_definitions\\autogen\\crate__generic_crate__everywhere.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "ep1.bundle",
+    "world_bob_startup.bundle",
+    "world_novigrad_startup.bundle",
+    "world_prolog_village_startup.bundle",
+    "world_skellige_startup.bundle"
+   ],
+   "entity_class": "W3AnimatedContainer",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\containers\\crate\\crate.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 7,
+   "bbox_min": [
+    -0.479,
+    -0.516,
+    -0.521
+   ],
+   "bbox_max": [
+    0.552,
+    0.514,
+    0.503
+   ],
+   "size": [
+    1.031,
+    1.03,
+    1.024
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.4791,
+      -0.5162,
+      -0.521
+     ],
+     "mesh_bbox_max": [
+      0.5521,
+      0.5139,
+      0.5026
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.517,
+    0.515,
+    0.513
+   ],
+   "autoHideDistance": 80.0,
+   "note": "тот же crate.w2mesh, но W3AnimatedContainer: лут и подсказка «Обыскать» — не для блоков"
+  },
+  {
+   "id": "_tree_cont_spiral",
+   "path": "gameplay\\containers\\_container_definitions\\_unique_containers\\_tree_cont_spiral.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle",
+    "world_the_spiral_startup.bundle"
+   ],
+   "entity_class": "W3AnimatedContainer",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\blockout_base\\box_wood.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 6,
+   "bbox_min": [
+    -0.531,
+    -0.48,
+    0.0
+   ],
+   "bbox_max": [
+    0.484,
+    0.572,
+    1.297
+   ],
+   "size": [
+    1.015,
+    1.052,
+    1.297
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "box",
+     "mesh": "environment\\blockout_base\\box_wood.w2mesh",
+     "pos": [
+      -0.5185,
+      0.5473,
+      -0.0
+     ],
+     "scale": [
+      1.0122,
+      1.0122,
+      1.2974
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0123,
+      -1.0154,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.9906,
+      0.0247,
+      1.0
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\blockout_base\\box_wood.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.501,
+    0.52
+   ],
+   "autoHideDistance": 40.0,
+   "note": null
+  },
+  {
+   "id": "riftBombCollision",
+   "path": "gameplay\\interactive_objects\\rift\\rift_bomb_collision.w2ent",
+   "alias": "riftBombCollision",
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "engine\\meshes\\editor\\box.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -1.6,
+    -1.6,
+    -0.35
+   ],
+   "bbox_max": [
+    1.6,
+    1.6,
+    2.85
+   ],
+   "size": [
+    3.2,
+    3.2,
+    3.2
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "petardsCollisionBox",
+     "mesh": "engine\\meshes\\editor\\box.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      1.25
+     ],
+     "scale": [
+      3.2,
+      3.2,
+      3.2
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "engine\\meshes\\editor\\box.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": 60.0,
+   "note": null
+  },
+  {
+   "id": "carry_crate",
+   "path": "items\\work\\carry_crate\\carry_crate.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "r4items.bundle"
+   ],
+   "entity_class": "CItemEntity",
+   "components": [
+    "CRigidMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\containers\\crate\\crate.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 11,
+   "bbox_min": [
+    -0.24,
+    -0.258,
+    -0.011
+   ],
+   "bbox_max": [
+    0.276,
+    0.257,
+    0.501
+   ],
+   "size": [
+    0.516,
+    0.515,
+    0.512
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CRigidMeshComponent",
+     "name": "CMeshComponent carry_crate",
+     "mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.25
+     ],
+     "scale": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.4791,
+      -0.5162,
+      -0.521
+     ],
+     "mesh_bbox_max": [
+      0.5521,
+      0.5139,
+      0.5026
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\containers\\crate\\crate.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.517,
+    0.515,
+    0.513
+   ],
+   "autoHideDistance": 80.0,
+   "note": "CItemEntity, ящик масштабом 0.5 — предмет в руках, не блок"
+  },
+  {
+   "id": "mh101_bomb_target",
+   "path": "quests\\generic_quests\\no_mans_land\\quest_files\\mh101_cockatrice\\entities\\mh101_bomb_target.w2ent",
+   "alias": null,
+   "source": "candidates",
+   "bundles": [
+    "blob.bundle",
+    "world_novigrad_startup.bundle"
+   ],
+   "entity_class": "CGameplayEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\blockout_base\\capsule_stone.w2mesh"
+   ],
+   "visible": false,
+   "drawableFlags": [
+    "{}"
+   ],
+   "streamed": true,
+   "streamingDistance": 3,
+   "bbox_min": [
+    -0.368,
+    -0.368,
+    0.0
+   ],
+   "bbox_max": [
+    0.368,
+    0.368,
+    1.84
+   ],
+   "size": [
+    0.736,
+    0.736,
+    1.84
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "capsule",
+     "mesh": "environment\\blockout_base\\capsule_stone.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.8404,
+      1.8404,
+      1.8404
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.2,
+      -0.2,
+      0.0
+     ],
+     "mesh_bbox_max": [
+      0.2,
+      0.2,
+      1.0
+     ],
+     "drawableFlags": "{}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\blockout_base\\capsule_stone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.0,
+    0.2,
+    0.3
+   ],
+   "autoHideDistance": null,
+   "note": null
+  },
+  {
+   "id": "decoration_set_rich_table_e",
+   "path": "environment\\decorations\\decoration_sets\\rich\\tables\\decoration_set_rich_table_e.w2ent",
+   "alias": "decoration_set_rich_table_e",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "blob.bundle",
+    "bob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CMeshComponent",
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\food\\bread\\bread_piece.w2mesh",
+    "environment\\decorations\\food\\cheese\\cheese_piece.w2mesh",
+    "environment\\decorations\\food\\fish\\fish_small.w2mesh",
+    "environment\\decorations\\food\\grapes\\grapes.w2mesh",
+    "environment\\decorations\\food\\grapes\\grapes_red.w2mesh",
+    "environment\\decorations\\food\\herbs\\herb_bag.w2mesh",
+    "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+    "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+    "environment\\decorations\\housework\\books\\book_decorative_px.w2mesh",
+    "environment\\decorations\\housework\\dishes\\beer_mug\\beer_mug.w2mesh",
+    "environment\\decorations\\housework\\dishes\\goblets\\goblet_a.w2mesh",
+    "environment\\decorations\\housework\\dishes\\goblets\\goblet_c.w2mesh",
+    "environment\\decorations\\housework\\dishes\\jugs\\jug_blue.w2mesh",
+    "environment\\decorations\\housework\\dishes\\jugs\\jug_wicker_b.w2mesh",
+    "environment\\decorations\\housework\\dishes\\plates_with_coins\\moneyplate_d.w2mesh",
+    "environment\\decorations\\housework\\knives\\knife_general.w2mesh",
+    "environment\\decorations\\housework\\silver_plate\\silver_bowl_fancy.w2mesh",
+    "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 7,
+   "bbox_min": [
+    -1.773,
+    -1.091,
+    -0.689
+   ],
+   "bbox_max": [
+    1.773,
+    1.067,
+    0.711
+   ],
+   "size": [
+    3.546,
+    2.158,
+    1.4
+   ],
+   "pivot": "center",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+     "pos": [
+      0.0341,
+      -0.0933,
+      -0.6561
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      94.0024
+     ],
+     "mesh_bbox_min": [
+      -1.1323,
+      -0.4662,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      1.1323,
+      0.4662,
+      0.7993
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent3",
+     "mesh": "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+     "pos": [
+      -0.8353,
+      -0.0974,
+      -0.6642
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      273.0016
+     ],
+     "mesh_bbox_min": [
+      -0.9373,
+      -0.1958,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.9373,
+      0.1958,
+      0.4503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent2",
+     "mesh": "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+     "pos": [
+      0.8353,
+      -0.1062,
+      -0.6892
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      275.0017
+     ],
+     "mesh_bbox_min": [
+      -0.9373,
+      -0.1958,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.9373,
+      0.1958,
+      0.4503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent0",
+     "mesh": "environment\\decorations\\housework\\silver_plate\\silver_bowl_fancy.w2mesh",
+     "pos": [
+      -0.0162,
+      0.8148,
+      0.1421
+     ],
+     "scale": [
+      0.6914,
+      0.6914,
+      0.6914
+     ],
+     "rot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.3684,
+      -0.3648,
+      0.0001
+     ],
+     "mesh_bbox_max": [
+      0.3687,
+      0.3648,
+      0.6708
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CMeshComponent book_decorative_px",
+     "mesh": "environment\\decorations\\housework\\books\\book_decorative_px.w2mesh",
+     "pos": [
+      -0.2377,
+      -0.0178,
+      0.1971
+     ],
+     "scale": [
+      0.8281,
+      0.8281,
+      0.8281
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      304.0005
+     ],
+     "mesh_bbox_min": [
+      -0.4141,
+      -0.1584,
+      -0.0494
+     ],
+     "mesh_bbox_max": [
+      0.413,
+      0.1584,
+      0.0494
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent moneyplate_d",
+     "mesh": "environment\\decorations\\housework\\dishes\\plates_with_coins\\moneyplate_d.w2mesh",
+     "pos": [
+      -0.8351,
+      -0.6464,
+      -0.2083
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.1079,
+      -0.1368,
+      -0.0012
+     ],
+     "mesh_bbox_max": [
+      0.0969,
+      0.1259,
+      0.0298
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_cheese_piece",
+     "mesh": "environment\\decorations\\food\\cheese\\cheese_piece.w2mesh",
+     "pos": [
+      -0.2246,
+      -0.462,
+      0.1434
+     ],
+     "scale": [
+      0.8784,
+      0.8784,
+      0.8784
+     ],
+     "rot": [
+      5.2461,
+      337.0323,
+      165.755
+     ],
+     "mesh_bbox_min": [
+      -0.0819,
+      -0.1067,
+      -0.0042
+     ],
+     "mesh_bbox_max": [
+      0.0767,
+      0.0957,
+      0.1228
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent7",
+     "mesh": "environment\\decorations\\food\\bread\\bread_piece.w2mesh",
+     "pos": [
+      -0.2089,
+      -0.5546,
+      0.1645
+     ],
+     "scale": [
+      0.7092,
+      0.7092,
+      0.7092
+     ],
+     "rot": [
+      357.0398,
+      13.251,
+      204.1181
+     ],
+     "mesh_bbox_min": [
+      -0.194,
+      -0.126,
+      0.0024
+     ],
+     "mesh_bbox_max": [
+      0.1776,
+      0.1957,
+      0.1503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent8",
+     "mesh": "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh",
+     "pos": [
+      -0.2017,
+      -0.5018,
+      0.1458
+     ],
+     "scale": [
+      0.581,
+      0.581,
+      0.581
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.314,
+      -0.314,
+      -0.0003
+     ],
+     "mesh_bbox_max": [
+      0.314,
+      0.314,
+      0.0672
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent6",
+     "mesh": "environment\\decorations\\housework\\dishes\\goblets\\goblet_a.w2mesh",
+     "pos": [
+      0.074,
+      -0.1157,
+      0.1483
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0635,
+      -0.0635,
+      0.0002
+     ],
+     "mesh_bbox_max": [
+      0.0635,
+      0.0635,
+      0.289
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent bread_piece",
+     "mesh": "environment\\decorations\\food\\bread\\bread_piece.w2mesh",
+     "pos": [
+      0.2587,
+      0.1143,
+      0.1771
+     ],
+     "scale": [
+      0.6169,
+      0.6169,
+      0.6169
+     ],
+     "rot": [
+      357.0398,
+      13.251,
+      50.1188
+     ],
+     "mesh_bbox_min": [
+      -0.194,
+      -0.126,
+      0.0024
+     ],
+     "mesh_bbox_max": [
+      0.1776,
+      0.1957,
+      0.1503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent4",
+     "mesh": "environment\\decorations\\food\\fish\\fish_small.w2mesh",
+     "pos": [
+      0.3947,
+      0.2269,
+      0.2312
+     ],
+     "scale": [
+      0.5735,
+      0.5735,
+      0.5735
+     ],
+     "rot": [
+      336.9247,
+      84.9962,
+      180.0014
+     ],
+     "mesh_bbox_min": [
+      -0.0833,
+      -0.0464,
+      -0.663
+     ],
+     "mesh_bbox_max": [
+      0.0588,
+      0.0537,
+      -0.0004
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CMeshComponent0",
+     "mesh": "environment\\decorations\\housework\\knives\\knife_general.w2mesh",
+     "pos": [
+      0.1063,
+      0.1707,
+      0.2571
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      8.0001,
+      90.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0235,
+      -0.2144,
+      -0.0093
+     ],
+     "mesh_bbox_max": [
+      0.0235,
+      0.1535,
+      0.0093
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent2",
+     "mesh": "environment\\decorations\\housework\\dishes\\goblets\\goblet_c.w2mesh",
+     "pos": [
+      -0.1827,
+      0.5331,
+      0.1439
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      0.5906,
+      0.4242,
+      359.9133
+     ],
+     "mesh_bbox_min": [
+      -0.0512,
+      -0.0512,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.0512,
+      0.0512,
+      0.2209
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent1",
+     "mesh": "environment\\decorations\\food\\grapes\\grapes.w2mesh",
+     "pos": [
+      -0.0578,
+      0.758,
+      0.6097
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      27.3925,
+      3.5991,
+      49.9715
+     ],
+     "mesh_bbox_min": [
+      -0.2004,
+      -0.1803,
+      -0.0931
+     ],
+     "mesh_bbox_max": [
+      0.1262,
+      0.1667,
+      0.0909
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_grapes",
+     "mesh": "environment\\decorations\\food\\grapes\\grapes.w2mesh",
+     "pos": [
+      0.071,
+      0.7572,
+      0.5929
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      1.0005
+     ],
+     "mesh_bbox_min": [
+      -0.2004,
+      -0.1803,
+      -0.0931
+     ],
+     "mesh_bbox_max": [
+      0.1262,
+      0.1667,
+      0.0909
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_grapes_red",
+     "mesh": "environment\\decorations\\food\\grapes\\grapes_red.w2mesh",
+     "pos": [
+      -0.0114,
+      0.8939,
+      0.6192
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      171.5365,
+      336.1014,
+      128.0876
+     ],
+     "mesh_bbox_min": [
+      -0.2011,
+      -0.1785,
+      -0.0952
+     ],
+     "mesh_bbox_max": [
+      0.1277,
+      0.17,
+      0.0919
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "environment\\decorations\\housework\\knives\\knife_general.w2mesh",
+     "pos": [
+      -0.2734,
+      -0.7291,
+      0.3071
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      102.0001,
+      90.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0235,
+      -0.2144,
+      -0.0093
+     ],
+     "mesh_bbox_max": [
+      0.0235,
+      0.1535,
+      0.0093
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent5",
+     "mesh": "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh",
+     "pos": [
+      0.2586,
+      0.0884,
+      0.1502
+     ],
+     "scale": [
+      0.581,
+      0.581,
+      0.581
+     ],
+     "rot": [
+      0.0,
+      0.0,
+      266.0008
+     ],
+     "mesh_bbox_min": [
+      -0.314,
+      -0.314,
+      -0.0003
+     ],
+     "mesh_bbox_max": [
+      0.314,
+      0.314,
+      0.0672
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent3",
+     "mesh": "environment\\decorations\\housework\\dishes\\jugs\\jug_blue.w2mesh",
+     "pos": [
+      0.0964,
+      0.4706,
+      0.3417
+     ],
+     "scale": [
+      1.1765,
+      1.1623,
+      1.1796
+     ],
+     "rot": [
+      359.4561,
+      359.4806,
+      135.9523
+     ],
+     "mesh_bbox_min": [
+      -0.1167,
+      -0.0974,
+      -0.1681
+     ],
+     "mesh_bbox_max": [
+      0.1167,
+      0.0974,
+      0.1681
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent9",
+     "mesh": "environment\\decorations\\housework\\dishes\\jugs\\jug_wicker_b.w2mesh",
+     "pos": [
+      0.0408,
+      -0.9739,
+      0.1418
+     ],
+     "scale": [
+      0.8715,
+      0.8715,
+      0.8715
+     ],
+     "rot": [
+      359.6442,
+      359.9554,
+      359.9588
+     ],
+     "mesh_bbox_min": [
+      -0.1339,
+      -0.1338,
+      0.0015
+     ],
+     "mesh_bbox_max": [
+      0.2395,
+      0.1338,
+      0.4053
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent herb_bag",
+     "mesh": "environment\\decorations\\food\\herbs\\herb_bag.w2mesh",
+     "pos": [
+      -0.8151,
+      -0.5963,
+      -0.2083
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0834,
+      -0.0991,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0955,
+      0.0986,
+      0.1802
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent beer_mug",
+     "mesh": "environment\\decorations\\housework\\dishes\\beer_mug\\beer_mug.w2mesh",
+     "pos": [
+      -0.1227,
+      -0.7689,
+      0.1434
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      358.948,
+      1.2509,
+      293.1293
+     ],
+     "mesh_bbox_min": [
+      -0.0569,
+      -0.1237,
+      -0.0005
+     ],
+     "mesh_bbox_max": [
+      0.0559,
+      0.0562,
+      0.1782
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    1.132,
+    0.466,
+    0.4
+   ],
+   "autoHideDistance": 50.0,
+   "note": "реквизит фоторежима «Feast table»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "sit_2_mw_playing_dice_table_ap",
+   "path": "dlc\\bob\\data\\gameplay\\community\\actionpoints\\resting\\sit_2_mw_playing_dice_table_ap.w2ent",
+   "alias": "sit_2_mw_playing_dice_table_ap",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "bob.bundle",
+    "world_bob_startup.bundle"
+   ],
+   "entity_class": "CActionPoint",
+   "components": [
+    "CMeshComponent",
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_cheesehalf_b.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_cheesequarter_b.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_sausage.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\cups\\poor_wooden_cup.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\stools\\poor_stool_a.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\tables\\poor_table_b.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\jugs\\poor_metal_jug_b.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\misc\\poor_chopping_board_round.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\tools\\poor_spoon_a.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default",
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -0.743,
+    -1.126,
+    -0.001
+   ],
+   "bbox_max": [
+    0.685,
+    1.128,
+    1.075
+   ],
+   "size": [
+    1.428,
+    2.254,
+    1.076
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "poor_table_b",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\tables\\poor_table_b.w2mesh",
+     "pos": [
+      -0.11,
+      -0.0,
+      0.0281
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      270.0001
+     ],
+     "mesh_bbox_min": [
+      -0.4833,
+      -0.8595,
+      -0.0257
+     ],
+     "mesh_bbox_max": [
+      0.483,
+      0.8595,
+      0.7732
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "poor_stool_a",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\stools\\poor_stool_a.w2mesh",
+     "pos": [
+      -0.2836,
+      0.855,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      90.0
+     ],
+     "mesh_bbox_min": [
+      -0.188,
+      -0.2726,
+      -0.0007
+     ],
+     "mesh_bbox_max": [
+      0.188,
+      0.2726,
+      0.4576
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "poor_stool_a 2",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\stools\\poor_stool_a.w2mesh",
+     "pos": [
+      -0.5181,
+      -0.853,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      90.0
+     ],
+     "mesh_bbox_min": [
+      -0.188,
+      -0.2726,
+      -0.0007
+     ],
+     "mesh_bbox_max": [
+      0.188,
+      0.2726,
+      0.4576
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_sausage.w2mesh",
+     "pos": [
+      0.4756,
+      -0.1551,
+      0.8609
+     ],
+     "scale": [
+      0.792,
+      0.796,
+      1.0173
+     ],
+     "rot": [
+      348.3835,
+      356.1392,
+      18.1362
+     ],
+     "mesh_bbox_min": [
+      -0.1566,
+      -0.0396,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1565,
+      0.0383,
+      0.04
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\misc\\poor_chopping_board_round.w2mesh",
+     "pos": [
+      0.4581,
+      -0.1704,
+      0.8034
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.1884,
+      -0.187,
+      -0.0028
+     ],
+     "mesh_bbox_max": [
+      0.1884,
+      0.187,
+      0.0457
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent2",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\tools\\poor_spoon_a.w2mesh",
+     "pos": [
+      0.3403,
+      -0.1174,
+      0.8657
+     ],
+     "scale": [
+      0.3633,
+      0.3633,
+      0.3633
+     ],
+     "rot": [
+      181.1469,
+      20.5395,
+      260.1972
+     ],
+     "mesh_bbox_min": [
+      -0.0335,
+      -0.0118,
+      -0.1268
+     ],
+     "mesh_bbox_max": [
+      0.0335,
+      0.0118,
+      0.1268
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent3",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_cheesequarter_b.w2mesh",
+     "pos": [
+      0.3915,
+      -0.2491,
+      0.8488
+     ],
+     "scale": [
+      0.5829,
+      0.5829,
+      0.5829
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      344.9035
+     ],
+     "mesh_bbox_min": [
+      -0.0784,
+      -0.0791,
+      0.0011
+     ],
+     "mesh_bbox_max": [
+      0.097,
+      0.0726,
+      0.088
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent4",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_cheesehalf_b.w2mesh",
+     "pos": [
+      0.4887,
+      -0.2394,
+      0.8488
+     ],
+     "scale": [
+      0.5835,
+      0.5835,
+      0.6042
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      73.9744
+     ],
+     "mesh_bbox_min": [
+      -0.1542,
+      -0.078,
+      0.0011
+     ],
+     "mesh_bbox_max": [
+      0.1456,
+      0.0899,
+      0.088
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent5",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\cups\\poor_wooden_cup.w2mesh",
+     "pos": [
+      0.3589,
+      -0.1218,
+      0.8519
+     ],
+     "scale": [
+      0.6881,
+      0.6881,
+      0.2664
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      164.2043
+     ],
+     "mesh_bbox_min": [
+      -0.0611,
+      -0.0582,
+      0.0003
+     ],
+     "mesh_bbox_max": [
+      0.0611,
+      0.0582,
+      0.141
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent6",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_sausage.w2mesh",
+     "pos": [
+      0.5059,
+      -0.1478,
+      0.8536
+     ],
+     "scale": [
+      0.8572,
+      0.8615,
+      1.101
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      322.8658
+     ],
+     "mesh_bbox_min": [
+      -0.1566,
+      -0.0396,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1565,
+      0.0383,
+      0.04
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent7",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\food\\meat\\gen_sausage.w2mesh",
+     "pos": [
+      0.551,
+      -0.131,
+      0.8454
+     ],
+     "scale": [
+      0.8572,
+      0.8615,
+      1.101
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      313.5546
+     ],
+     "mesh_bbox_min": [
+      -0.1566,
+      -0.0396,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1565,
+      0.0383,
+      0.04
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "poor_metal_jug_b",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\jugs\\poor_metal_jug_b.w2mesh",
+     "pos": [
+      0.2875,
+      0.2464,
+      0.7996
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      225.0002
+     ],
+     "mesh_bbox_min": [
+      -0.135,
+      -0.1126,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1482,
+      0.1102,
+      0.2753
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "gen_coin",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.6818,
+      -0.295,
+      0.8001
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent8",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.725,
+      -0.34,
+      0.8001
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent9",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.6849,
+      -0.3197,
+      0.8046
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      7.7771,
+      -0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent10",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.5088,
+      0.2328,
+      0.8001
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent11",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.0972,
+      0.1963,
+      0.8001
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent12",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\misc\\rich_coin_pile\\gen_coin.w2mesh",
+     "pos": [
+      -0.131,
+      0.1679,
+      0.8001
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.0181,
+      -0.0181,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0181,
+      0.0181,
+      0.003
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\tables\\poor_table_b.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 5,
+   "collision_tail3f": null,
+   "autoHideDistance": 60.0,
+   "note": "реквизит фоторежима «Gambling table»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "q206_dining_table_bench_four",
+   "path": "quests\\part_2\\quest_files\\q206_berserkers\\actionpoints\\q206_dining_table_bench_four.w2ent",
+   "alias": "q206_dining_table_bench_four",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CActionPoint",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\furniture\\tables\\skellige\\inn_tables\\inn_bench_rough_long.w2mesh",
+    "environment\\decorations\\furniture\\tables\\skellige\\inn_tables\\inn_table_rich_a.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default",
+    "{DF_IsVisible|DF_MissedUpdateTransform}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -1.365,
+    -2.213,
+    -0.006
+   ],
+   "bbox_max": [
+    1.347,
+    0.583,
+    0.894
+   ],
+   "size": [
+    2.712,
+    2.796,
+    0.9
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent inn_bench_rough_long",
+     "mesh": "environment\\decorations\\furniture\\tables\\skellige\\inn_tables\\inn_bench_rough_long.w2mesh",
+     "pos": [
+      0.0,
+      -2.0031,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -1.3645,
+      -0.2097,
+      -0.0004
+     ],
+     "mesh_bbox_max": [
+      1.3331,
+      0.2061,
+      0.4569
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_MissedUpdateTransform}",
+     "streamed": false
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent inn_table_rough_a",
+     "mesh": "environment\\decorations\\furniture\\tables\\skellige\\inn_tables\\inn_table_rich_a.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -1.3473,
+      -0.5887,
+      -0.0059
+     ],
+     "mesh_bbox_max": [
+      1.3472,
+      0.5832,
+      0.8944
+     ],
+     "drawableFlags": "default",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "environment\\decorations\\furniture\\tables\\skellige\\inn_tables\\inn_table_rich_a.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.481,
+    0.39,
+    1.339
+   ],
+   "autoHideDistance": 50.0,
+   "note": "реквизит фоторежима «Table»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "decoration_set_rich_table_b",
+   "path": "environment\\decorations\\decoration_sets\\rich\\tables\\decoration_set_rich_table_b.w2ent",
+   "alias": "decoration_set_rich_table_b",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CMeshComponent",
+    "CRigidMeshComponent",
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\food\\apple\\apple.w2mesh",
+    "environment\\decorations\\food\\bread\\bread_piece.w2mesh",
+    "environment\\decorations\\food\\cheese\\cheese_piece.w2mesh",
+    "environment\\decorations\\food\\fish\\fish_small.w2mesh",
+    "environment\\decorations\\food\\grapes\\grapes.w2mesh",
+    "environment\\decorations\\food\\grapes\\grapes_red.w2mesh",
+    "environment\\decorations\\food\\herbs\\herb_bag.w2mesh",
+    "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+    "environment\\decorations\\furniture\\chairs\\rich_chair_set\\rich_chair_c.w2mesh",
+    "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+    "environment\\decorations\\housework\\dishes\\carafe\\carafe.w2mesh",
+    "environment\\decorations\\housework\\dishes\\goblets\\goblet_a.w2mesh",
+    "environment\\decorations\\housework\\dishes\\goblets\\goblet_c.w2mesh",
+    "environment\\decorations\\housework\\dishes\\jugs\\jug_blue.w2mesh",
+    "environment\\decorations\\housework\\dishes\\plates_with_coins\\moneyplate_d.w2mesh",
+    "environment\\decorations\\housework\\knives\\knife_general.w2mesh",
+    "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh",
+    "items\\work\\bag_human\\bag_human.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 7,
+   "bbox_min": [
+    -1.762,
+    -1.15,
+    -0.498
+   ],
+   "bbox_max": [
+    1.78,
+    1.223,
+    0.714
+   ],
+   "size": [
+    3.542,
+    2.373,
+    1.212
+   ],
+   "pivot": "center",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+     "pos": [
+      0.0433,
+      0.072,
+      -0.4983
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      91.0024
+     ],
+     "mesh_bbox_min": [
+      -1.1323,
+      -0.4662,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      1.1323,
+      0.4662,
+      0.7993
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent2",
+     "mesh": "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+     "pos": [
+      -0.8251,
+      -0.4066,
+      -0.4814
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      270.0016
+     ],
+     "mesh_bbox_min": [
+      -0.9373,
+      -0.1958,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.9373,
+      0.1958,
+      0.4503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent3",
+     "mesh": "environment\\decorations\\furniture\\barons_manor\\baron_bench.w2mesh",
+     "pos": [
+      0.8428,
+      0.4674,
+      -0.4814
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      272.0016
+     ],
+     "mesh_bbox_min": [
+      -0.9373,
+      -0.1958,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.9373,
+      0.1958,
+      0.4503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent10",
+     "mesh": "environment\\decorations\\furniture\\chairs\\rich_chair_set\\rich_chair_c.w2mesh",
+     "pos": [
+      -0.7902,
+      0.9978,
+      -0.4828
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      359.3996,
+      0.2654,
+      339.003
+     ],
+     "mesh_bbox_min": [
+      -0.155,
+      -0.2278,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1543,
+      0.225,
+      0.4497
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent11",
+     "mesh": "environment\\decorations\\furniture\\chairs\\rich_chair_set\\rich_chair_c.w2mesh",
+     "pos": [
+      0.8793,
+      -0.9218,
+      -0.4677
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      359.5457,
+      0.2414,
+      339.0969
+     ],
+     "mesh_bbox_min": [
+      -0.155,
+      -0.2278,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1543,
+      0.225,
+      0.4497
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CRigidMeshComponent8",
+     "mesh": "environment\\decorations\\housework\\dishes\\jugs\\jug_blue.w2mesh",
+     "pos": [
+      0.0945,
+      -0.7517,
+      0.4983
+     ],
+     "scale": [
+      1.1765,
+      1.1623,
+      1.1796
+     ],
+     "rot": [
+      359.8501,
+      359.9102,
+      268.0286
+     ],
+     "mesh_bbox_min": [
+      -0.1167,
+      -0.0974,
+      -0.1681
+     ],
+     "mesh_bbox_max": [
+      0.1167,
+      0.0974,
+      0.1681
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CRigidMeshComponent",
+     "name": "CRigidMeshComponent9",
+     "mesh": "items\\work\\bag_human\\bag_human.w2mesh",
+     "pos": [
+      -0.8793,
+      -0.9979,
+      -0.0127
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.1388,
+      -0.109,
+      -0.0028
+     ],
+     "mesh_bbox_max": [
+      0.1351,
+      0.1238,
+      0.3401
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_grapes",
+     "mesh": "environment\\decorations\\food\\grapes\\grapes.w2mesh",
+     "pos": [
+      0.1161,
+      -0.3673,
+      0.4859
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      4.388,
+      322.8829,
+      99.4312
+     ],
+     "mesh_bbox_min": [
+      -0.2004,
+      -0.1803,
+      -0.0931
+     ],
+     "mesh_bbox_max": [
+      0.1262,
+      0.1667,
+      0.0909
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent7",
+     "mesh": "environment\\decorations\\food\\cheese\\cheese_piece.w2mesh",
+     "pos": [
+      -0.0735,
+      -0.4336,
+      0.3699
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      5.0,
+      345.0003,
+      71.0
+     ],
+     "mesh_bbox_min": [
+      -0.0819,
+      -0.1067,
+      -0.0042
+     ],
+     "mesh_bbox_max": [
+      0.0767,
+      0.0957,
+      0.1228
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent6",
+     "mesh": "environment\\decorations\\food\\fish\\fish_small.w2mesh",
+     "pos": [
+      0.0063,
+      -0.067,
+      0.369
+     ],
+     "scale": [
+      0.5735,
+      0.5735,
+      0.5735
+     ],
+     "rot": [
+      130.0001,
+      90.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0833,
+      -0.0464,
+      -0.663
+     ],
+     "mesh_bbox_max": [
+      0.0588,
+      0.0537,
+      -0.0004
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_grapes_red",
+     "mesh": "environment\\decorations\\food\\grapes\\grapes_red.w2mesh",
+     "pos": [
+      0.1233,
+      -0.224,
+      0.4599
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      4.0539,
+      338.385,
+      287.8469
+     ],
+     "mesh_bbox_min": [
+      -0.2011,
+      -0.1785,
+      -0.0952
+     ],
+     "mesh_bbox_max": [
+      0.1277,
+      0.17,
+      0.0919
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent3",
+     "mesh": "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh",
+     "pos": [
+      -0.1797,
+      0.4403,
+      0.3
+     ],
+     "scale": [
+      0.581,
+      0.581,
+      0.581
+     ],
+     "rot": [
+      359.9999,
+      359.998,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.314,
+      -0.314,
+      -0.0003
+     ],
+     "mesh_bbox_max": [
+      0.314,
+      0.314,
+      0.0672
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent bread_piece",
+     "mesh": "environment\\decorations\\food\\bread\\bread_piece.w2mesh",
+     "pos": [
+      -0.1887,
+      0.4034,
+      0.3277
+     ],
+     "scale": [
+      0.7092,
+      0.7092,
+      0.7092
+     ],
+     "rot": [
+      0.3982,
+      0.5738,
+      182.293
+     ],
+     "mesh_bbox_min": [
+      -0.194,
+      -0.126,
+      0.0024
+     ],
+     "mesh_bbox_max": [
+      0.1776,
+      0.1957,
+      0.1503
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent_Dyn_cheese_piece",
+     "mesh": "environment\\decorations\\food\\cheese\\cheese_piece.w2mesh",
+     "pos": [
+      -0.1994,
+      0.5177,
+      0.3592
+     ],
+     "scale": [
+      0.8269,
+      0.8269,
+      0.8269
+     ],
+     "rot": [
+      347.1244,
+      344.5697,
+      167.7528
+     ],
+     "mesh_bbox_min": [
+      -0.0819,
+      -0.1067,
+      -0.0042
+     ],
+     "mesh_bbox_max": [
+      0.0767,
+      0.0957,
+      0.1228
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent0",
+     "mesh": "environment\\decorations\\housework\\dishes\\carafe\\carafe.w2mesh",
+     "pos": [
+      0.0657,
+      0.9515,
+      0.3024
+     ],
+     "scale": [
+      0.4916,
+      0.4916,
+      0.4916
+     ],
+     "rot": [
+      0.2502,
+      359.9583,
+      68.8529
+     ],
+     "mesh_bbox_min": [
+      -0.2471,
+      -0.1467,
+      -0.0047
+     ],
+     "mesh_bbox_max": [
+      0.1624,
+      0.1726,
+      0.8373
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent2",
+     "mesh": "environment\\decorations\\housework\\dishes\\goblets\\goblet_a.w2mesh",
+     "pos": [
+      -0.1018,
+      0.8934,
+      0.3613
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      89.3097,
+      329.7479,
+      317.032
+     ],
+     "mesh_bbox_min": [
+      -0.0635,
+      -0.0635,
+      0.0002
+     ],
+     "mesh_bbox_max": [
+      0.0635,
+      0.0635,
+      0.289
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent1",
+     "mesh": "environment\\decorations\\housework\\dishes\\goblets\\goblet_a.w2mesh",
+     "pos": [
+      -0.1378,
+      0.7363,
+      0.3008
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      0.8158,
+      0.1236,
+      359.8689
+     ],
+     "mesh_bbox_min": [
+      -0.0635,
+      -0.0635,
+      0.0002
+     ],
+     "mesh_bbox_max": [
+      0.0635,
+      0.0635,
+      0.289
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent12",
+     "mesh": "environment\\decorations\\housework\\dishes\\goblets\\goblet_c.w2mesh",
+     "pos": [
+      -0.0562,
+      0.0299,
+      0.3004
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      0.8178,
+      0.3314,
+      359.7393
+     ],
+     "mesh_bbox_min": [
+      -0.0512,
+      -0.0512,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.0512,
+      0.0512,
+      0.2209
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "environment\\decorations\\housework\\knives\\knife_general.w2mesh",
+     "pos": [
+      -0.2867,
+      -0.4916,
+      0.4699
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      69.0,
+      90.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0235,
+      -0.2144,
+      -0.0093
+     ],
+     "mesh_bbox_max": [
+      0.0235,
+      0.1535,
+      0.0093
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent herb_bag",
+     "mesh": "environment\\decorations\\food\\herbs\\herb_bag.w2mesh",
+     "pos": [
+      -0.1106,
+      -0.7771,
+      0.2999
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      253.0008
+     ],
+     "mesh_bbox_min": [
+      -0.0834,
+      -0.0991,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.0955,
+      0.0986,
+      0.1802
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CStaticMeshComponent moneyplate_d",
+     "mesh": "environment\\decorations\\housework\\dishes\\plates_with_coins\\moneyplate_d.w2mesh",
+     "pos": [
+      -0.1526,
+      -0.7434,
+      0.2999
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      253.0008
+     ],
+     "mesh_bbox_min": [
+      -0.1079,
+      -0.1368,
+      -0.0012
+     ],
+     "mesh_bbox_max": [
+      0.0969,
+      0.1259,
+      0.0298
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent4",
+     "mesh": "environment\\decorations\\food\\fish\\fish_small.w2mesh",
+     "pos": [
+      -0.2053,
+      -0.3843,
+      0.3891
+     ],
+     "scale": [
+      0.5735,
+      0.5735,
+      0.5735
+     ],
+     "rot": [
+      271.8435,
+      65.172,
+      39.2601
+     ],
+     "mesh_bbox_min": [
+      -0.0833,
+      -0.0464,
+      -0.663
+     ],
+     "mesh_bbox_max": [
+      0.0588,
+      0.0537,
+      -0.0004
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent apple",
+     "mesh": "environment\\decorations\\food\\apple\\apple.w2mesh",
+     "pos": [
+      -0.2585,
+      0.4276,
+      0.3754
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "mesh_bbox_min": [
+      -0.0546,
+      -0.0542,
+      -0.0523
+     ],
+     "mesh_bbox_max": [
+      0.0546,
+      0.0542,
+      0.057
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CMeshComponent",
+     "name": "CRigidMeshComponent5",
+     "mesh": "environment\\decorations\\housework\\silver_plate\\silver_plate_small.w2mesh",
+     "pos": [
+      -0.0402,
+      -0.3215,
+      0.2999
+     ],
+     "scale": [
+      0.8488,
+      0.8488,
+      0.8488
+     ],
+     "rot": [
+      0.0,
+      0.0,
+      123.0003
+     ],
+     "mesh_bbox_min": [
+      -0.314,
+      -0.314,
+      -0.0003
+     ],
+     "mesh_bbox_max": [
+      0.314,
+      0.314,
+      0.0672
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\furniture\\tables\\nomans_land\\table.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    1.132,
+    0.466,
+    0.4
+   ],
+   "autoHideDistance": 50.0,
+   "note": "реквизит фоторежима «Feast table 2»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "wooden_bath_px",
+   "path": "environment\\decorations\\furniture\\wooden_bath\\wooden_bath_px.w2ent",
+   "alias": "wooden_bath_px",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "blob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\furniture\\wooden_bath\\wooden_bath.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 11,
+   "bbox_min": [
+    -1.207,
+    -1.207,
+    -0.002
+   ],
+   "bbox_max": [
+    1.207,
+    1.207,
+    1.001
+   ],
+   "size": [
+    2.414,
+    2.414,
+    1.003
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "environment\\decorations\\furniture\\wooden_bath\\wooden_bath.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -1.2066,
+      -1.2066,
+      -0.0022
+     ],
+     "mesh_bbox_max": [
+      1.2066,
+      1.2066,
+      1.0009
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\furniture\\wooden_bath\\wooden_bath.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": null,
+   "autoHideDistance": 80.0,
+   "note": "реквизит фоторежима «Wooden Bath»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "q604_bench",
+   "path": "dlc\\ep1\\data\\quests\\quest_files\\q604_mansion\\entites\\q604_bench.w2ent",
+   "alias": "q604_bench",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "ep1.bundle"
+   ],
+   "entity_class": "W3MonsterClue",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "environment\\decorations\\brothel_furniture\\brothel_bench.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "default"
+   ],
+   "streamed": true,
+   "streamingDistance": 5,
+   "bbox_min": [
+    -0.991,
+    -0.612,
+    0.0
+   ],
+   "bbox_max": [
+    0.985,
+    0.16,
+    1.21
+   ],
+   "size": [
+    1.976,
+    0.772,
+    1.21
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "brothel_bench",
+     "mesh": "environment\\decorations\\brothel_furniture\\brothel_bench.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.9906,
+      -0.6124,
+      -0.0
+     ],
+     "mesh_bbox_max": [
+      0.9849,
+      0.1595,
+      1.2101
+     ],
+     "drawableFlags": "default",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "environment\\decorations\\brothel_furniture\\brothel_bench.w2mesh",
+   "physmat": "wood_hollow",
+   "collision_shapes": 1,
+   "collision_tail3f": null,
+   "autoHideDistance": 35.0,
+   "note": "реквизит фоторежима «Bench»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "deco_gen_camp_bench_a",
+   "path": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\decoration_set\\camp\\deco_gen_camp_bench_a.w2ent",
+   "alias": "deco_gen_camp_bench_a",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\architecture\\wooden_parts\\bob_platform_plank_a.w2mesh",
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\logs\\gen_tree_stump.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -1.023,
+    -1.045,
+    -0.054
+   ],
+   "bbox_max": [
+    1.024,
+    1.061,
+    0.678
+   ],
+   "size": [
+    2.047,
+    2.106,
+    0.732
+   ],
+   "pivot": "offset",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent0",
+     "mesh": "dlc\\bob\\data\\environment\\architecture\\wooden_parts\\bob_platform_plank_a.w2mesh",
+     "pos": [
+      -0.0364,
+      0.0081,
+      0.485
+     ],
+     "scale": [
+      1.1125,
+      1.0,
+      2.339
+     ],
+     "rot": [
+      263.0005,
+      0.0,
+      93.0001
+     ],
+     "mesh_bbox_min": [
+      -0.0251,
+      -1.0529,
+      -0.0825
+     ],
+     "mesh_bbox_max": [
+      0.0251,
+      1.0529,
+      0.0825
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent1",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\logs\\gen_tree_stump.w2mesh",
+     "pos": [
+      -0.7449,
+      -0.0125,
+      -0.005
+     ],
+     "scale": [
+      0.9053,
+      0.9053,
+      1.0033
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.3074,
+      -0.2678,
+      -0.0482
+     ],
+     "mesh_bbox_max": [
+      0.3085,
+      0.2905,
+      0.4797
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    },
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "CStaticMeshComponent2",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\logs\\gen_tree_stump.w2mesh",
+     "pos": [
+      0.7449,
+      0.0125,
+      -0.005
+     ],
+     "scale": [
+      0.9053,
+      0.9053,
+      1.0122
+     ],
+     "rot": [
+      1.9319,
+      0.5175,
+      104.9913
+     ],
+     "mesh_bbox_min": [
+      -0.3074,
+      -0.2678,
+      -0.0482
+     ],
+     "mesh_bbox_max": [
+      0.3085,
+      0.2905,
+      0.4797
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\generic\\logs\\gen_tree_stump.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": null,
+   "autoHideDistance": 50.0,
+   "note": "реквизит фоторежима «Wood bench»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "sit_w_music_lute_rich_chair_ap",
+   "path": "dlc\\bob\\data\\gameplay\\community\\actionpoints\\work\\sit_w_music_lute_rich_chair_ap.w2ent",
+   "alias": "sit_w_music_lute_rich_chair_ap",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CActionPoint",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\furniture\\chairs\\rich_chair_a.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 6,
+   "bbox_min": [
+    -0.292,
+    -0.812,
+    -0.02
+   ],
+   "bbox_max": [
+    0.306,
+    -0.268,
+    1.307
+   ],
+   "size": [
+    0.598,
+    0.544,
+    1.327
+   ],
+   "pivot": "offset",
+   "component_rotation": true,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "rich_chair_a",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\furniture\\chairs\\rich_chair_a.w2mesh",
+     "pos": [
+      0.007,
+      -0.5397,
+      -0.02
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": [
+      -0.0,
+      0.0,
+      359.0
+     ],
+     "mesh_bbox_min": [
+      -0.2989,
+      -0.272,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.2989,
+      0.272,
+      1.3266
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\rich_district\\furniture\\chairs\\rich_chair_a.w2mesh",
+   "physmat": "wood_hollow",
+   "collision_shapes": 2,
+   "collision_tail3f": null,
+   "autoHideDistance": 40.0,
+   "note": "реквизит фоторежима «Chair»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "sit_c_chair_ap",
+   "path": "dlc\\bob\\data\\gameplay\\community\\actionpoints\\resting\\sit_c_chair_ap.w2ent",
+   "alias": "sit_c_chair_ap",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "bob.bundle"
+   ],
+   "entity_class": "CActionPoint",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\chairs\\poor_chair_a.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 9,
+   "bbox_min": [
+    -0.274,
+    -1.149,
+    -0.011
+   ],
+   "bbox_max": [
+    0.274,
+    -0.654,
+    1.04
+   ],
+   "size": [
+    0.548,
+    0.495,
+    1.051
+   ],
+   "pivot": "offset",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "poor_chair_a",
+     "mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\chairs\\poor_chair_a.w2mesh",
+     "pos": [
+      0.0,
+      -0.9013,
+      -0.0134
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.2742,
+      -0.2477,
+      0.002
+     ],
+     "mesh_bbox_max": [
+      0.2742,
+      0.2477,
+      1.0532
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\bob\\data\\environment\\decorations\\gameplay\\poor_district\\furniture\\chairs\\poor_chair_a.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": null,
+   "autoHideDistance": 60.0,
+   "note": "реквизит фоторежима «Simple chair»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "cs_601_stump_immo",
+   "path": "dlc\\ep1\\data\\items\\cutscenes\\cs601_woodstump\\cs_601_stump_immo.w2ent",
+   "alias": "cs_601_stump_immo",
+   "source": "game/photomode_props.csv (Furniture)",
+   "bundles": [
+    "ep1.bundle"
+   ],
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "dlc\\ep1\\data\\items\\cutscenes\\cs601_woodstump\\cs601_stumptree_immo.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": true,
+   "streamingDistance": 3,
+   "bbox_min": [
+    -0.182,
+    -0.175,
+    -0.0
+   ],
+   "bbox_max": [
+    0.189,
+    0.193,
+    0.449
+   ],
+   "size": [
+    0.371,
+    0.368,
+    0.449
+   ],
+   "pivot": "bottom-center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "cs601_stumptree_immo",
+     "mesh": "dlc\\ep1\\data\\items\\cutscenes\\cs601_woodstump\\cs601_stumptree_immo.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.1816,
+      -0.1751,
+      -0.0001
+     ],
+     "mesh_bbox_max": [
+      0.1892,
+      0.1928,
+      0.4489
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": true
+    }
+   ],
+   "main_mesh": "dlc\\ep1\\data\\items\\cutscenes\\cs601_woodstump\\cs601_stumptree_immo.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.222,
+    0.179,
+    0.175
+   ],
+   "autoHideDistance": null,
+   "note": "реквизит фоторежима «Stump»: ваниль 5.0 спавнит его через LoadResource(alias)"
+  },
+  {
+   "id": "mcw_grass_block",
+   "path": "mcw\\blocks\\grass_block.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 2,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\grass_block\\grass_block.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_grass_block",
+     "mesh": "mcw\\blocks\\grass_block\\grass_block.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\grass_block\\grass_block.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=2"
+  },
+  {
+   "id": "mcw_dirt",
+   "path": "mcw\\blocks\\dirt.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 3,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\dirt\\dirt.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_dirt",
+     "mesh": "mcw\\blocks\\dirt\\dirt.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\dirt\\dirt.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=3"
+  },
+  {
+   "id": "mcw_stone",
+   "path": "mcw\\blocks\\stone.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 4,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\stone\\stone.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_stone",
+     "mesh": "mcw\\blocks\\stone\\stone.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\stone\\stone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=4"
+  },
+  {
+   "id": "mcw_cobblestone",
+   "path": "mcw\\blocks\\cobblestone.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 5,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\cobblestone\\cobblestone.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_cobblestone",
+     "mesh": "mcw\\blocks\\cobblestone\\cobblestone.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\cobblestone\\cobblestone.w2mesh",
+   "physmat": "stone_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=5"
+  },
+  {
+   "id": "mcw_oak_log",
+   "path": "mcw\\blocks\\oak_log.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 6,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\oak_log\\oak_log.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_oak_log",
+     "mesh": "mcw\\blocks\\oak_log\\oak_log.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\oak_log\\oak_log.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=6"
+  },
+  {
+   "id": "mcw_oak_planks",
+   "path": "mcw\\blocks\\oak_planks.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 7,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\oak_planks\\oak_planks.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_oak_planks",
+     "mesh": "mcw\\blocks\\oak_planks\\oak_planks.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\oak_planks\\oak_planks.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=7"
+  },
+  {
+   "id": "mcw_sand",
+   "path": "mcw\\blocks\\sand.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 8,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\sand\\sand.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_sand",
+     "mesh": "mcw\\blocks\\sand\\sand.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\sand\\sand.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=8"
+  },
+  {
+   "id": "mcw_crafting_table",
+   "path": "mcw\\blocks\\crafting_table.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 9,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\crafting_table\\crafting_table.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_crafting_table",
+     "mesh": "mcw\\blocks\\crafting_table\\crafting_table.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\crafting_table\\crafting_table.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=9"
+  },
+  {
+   "id": "mcw_oak_leaves",
+   "path": "mcw\\blocks\\oak_leaves.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 10,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\oak_leaves\\oak_leaves.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_oak_leaves",
+     "mesh": "mcw\\blocks\\oak_leaves\\oak_leaves.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\oak_leaves\\oak_leaves.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=10"
+  },
+  {
+   "id": "mcw_glass",
+   "path": "mcw\\blocks\\glass.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 11,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\glass\\glass.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw_glass",
+     "mesh": "mcw\\blocks\\glass\\glass.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\glass\\glass.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=11"
+  },
+  {
+   "id": "mcw__unknown",
+   "path": "mcw\\blocks\\_unknown.w2ent",
+   "alias": null,
+   "source": "modMCWBlocks",
+   "bundles": [],
+   "batch_t": 12,
+   "entity_class": "CEntity",
+   "components": [
+    "CStaticMeshComponent"
+   ],
+   "meshes": [
+    "mcw\\blocks\\_unknown\\_unknown.w2mesh"
+   ],
+   "visible": true,
+   "drawableFlags": [
+    "{DF_IsVisible|DF_CastShadows}"
+   ],
+   "streamed": false,
+   "streamingDistance": null,
+   "bbox_min": [
+    -0.5,
+    -0.5,
+    -0.5
+   ],
+   "bbox_max": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "size": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pivot": "center",
+   "component_rotation": null,
+   "mesh_components": [
+    {
+     "cls": "CStaticMeshComponent",
+     "name": "mcw__unknown",
+     "mesh": "mcw\\blocks\\_unknown\\_unknown.w2mesh",
+     "pos": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "scale": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "rot": null,
+     "mesh_bbox_min": [
+      -0.5,
+      -0.5,
+      -0.5
+     ],
+     "mesh_bbox_max": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "drawableFlags": "{DF_IsVisible|DF_CastShadows}",
+     "streamed": false
+    }
+   ],
+   "main_mesh": "mcw\\blocks\\_unknown\\_unknown.w2mesh",
+   "physmat": "wood_solid",
+   "collision_shapes": 1,
+   "collision_tail3f": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "autoHideDistance": null,
+   "note": "блок modMCWBlocks (tools/build_blocks.py); mcw_batch t=12"
+  }
+ ]
+}
