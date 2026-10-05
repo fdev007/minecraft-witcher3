@@ -1,0 +1,8 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "mcw.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": ["AbstractArrowMixin", "ArmorStandMixin", "ConnectionAccessor", "GamePacketListenerMixin", "LevelMixin", "LivingEntityMixin", "PlayerListMixin", "PlayerMixin", "ServerExplosionMixin"],
+	"injectors": { "defaultRequire": 1 }
+}

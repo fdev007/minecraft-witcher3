@@ -1,0 +1,29 @@
+# MCW: headless-сервер Minecraft 1.21.11 + Fabric Loader 0.19.5 для мэшапа с Ведьмаком.
+# run_server.ps1 копирует этот файл в run\server.properties перед каждым запуском (источник правды — здесь).
+# Только локально: мост и мод на этой же машине.
+server-ip=127.0.0.1
+server-port=25565
+online-mode=false
+# при online-mode=false и так выключен (DedicatedServer.enforceSecureProfile), оставлен для ясности
+enforce-secure-profile=false
+# 1.21.2+: при пустом PlayerList дольше N с сервер перестаёт тикать мир. Геральт в PlayerList и так держит его;
+# 0 — страховка на время, пока Геральт умер и ещё не возродился
+pause-when-empty-seconds=0
+# пустой мир: flat без слоёв (FlatLevelGeneratorSettings.CODEC: layers/lakes/features/biome/structure_overrides)
+level-type=minecraft\:flat
+generator-settings={"layers"\:[],"biome"\:"minecraft\:the_void","features"\:false,"lakes"\:false}
+generate-structures=false
+# защита спавна работает только при непустом ops.json, но если кого-то сделают оператором — Геральт не op
+spawn-protection=0
+view-distance=6
+simulation-distance=6
+gamemode=survival
+difficulty=normal
+allow-flight=true
+# сторожевой поток убивает сервер, если тик висит >60 с (точки останова отладчика); -1 = выключен
+max-tick-time=-1
+sync-chunk-writes=false
+enable-rcon=false
+enable-query=false
+management-server-enabled=false
+motd=MCW

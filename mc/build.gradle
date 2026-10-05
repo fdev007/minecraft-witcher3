@@ -1,0 +1,55 @@
+plugins {
+	// 1.21.11 ещё обфусцирован -> remap-вариант Loom (для 26.x был бы 'net.fabricmc.fabric-loom')
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+}
+
+loom {
+	// мод только серверный: без клиентского jar, ассетов и нативок LWJGL
+	serverOnlyMinecraftJar()
+	runs {
+		server {
+			// dev-сервер (gradlew runServer) — отдельно от run/: там лежат собранные intermediary-jar'ы, dev их бы
+			// подхватил вторым экземпляром мода. eula.txt в run-dev/ — решение пользователя
+			runDir "run-dev"
+			programArgs "nogui"
+		}
+	}
+}
+
+configurations {
+	// jar'ы для run/mods как есть (intermediary), без транзитивных
+	serverMods { transitive = false }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	// имена Mojang: как fabric-example-mod ветки 1.21.11 и исходники Fabric API 1.21.11
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// JSON — Gson из Minecraft, TCP — java.net; своих библиотек нет
+	serverMods "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+// gradlew build deployRun: наш jar и Fabric API в run/mods для run_server.ps1
+tasks.register('deployRun', Copy) {
+	from(tasks.named('remapJar').flatMap { it.archiveFile })
+	from(configurations.serverMods)
+	into layout.projectDirectory.dir('run/mods')
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+	filesMatching("fabric.mod.json") { expand "version": version }
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+	it.options.encoding = "UTF-8"
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
