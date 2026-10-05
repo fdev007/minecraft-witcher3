@@ -1,0 +1,1029 @@
+{
+  "_note": "Minecraft Java 1.21.11 entity box models, written down as plain numeric facts (no game code). Verified by reading the decompiled 1.21.11 client sources (Mojang names; HumanoidModel/PlayerModel, AbstractEquineModel/HorseModel/EquineSaddleModel, LayerDefinitions, MeshTransformer, ModelPart, LivingEntityRenderer, AvatarRenderer, HorseRenderer, EquipmentClientInfo). UNITS: model 'pixels', 1 px = 1/16 block. AXES (model space): +X = entity's LEFT, +Y = DOWN, -Z = FRONT (face/muzzle), +Z = back. PART TRANSFORM: world_of_part = world_of_parent * T(pivot/16) * Rz(rz)*Ry(ry)*Rx(rx) * S(scale); i.e. rotations are applied to a vector in order X first, then Y, then Z (JOML rotationZYX), right-handed in model space. With +Y down, a positive rx swings a downward-hanging limb's end toward +Z (backward) and pitches a head forward/down. 'pivot' is the PartPose offset (rotation point, relative to the parent's frame); 'origin' is the box min corner relative to the pivot; 'size' = (w,h,d) un-inflated. INFLATE: box becomes [origin-inflate, origin+size+inflate] on every axis; UVs still use the un-inflated size. 'rot' is in radians. Children poses are relative to their 'parent' (null = attached to the model root). All rest rotations are 0 unless listed. MIRROR: when true the box's min/max X are swapped before UVs are assigned (geometry identical, each face's texture flipped horizontally; the face that gets the 'west/right-side' UV rect ends up on +X and vice versa). BOX UV (texOffs U,V; size w,h,d; all /tex size): top face (model -Y, visually up) rect [U+d, V]..[U+d+w, V+d]; bottom face (model +Y) rect [U+d+w, V]..[U+d+2w, V+d] (v flipped: v=V+d at the z0 edge, v=V at the z1 edge); -X side [U, V+d]..[U+d, V+d+h]; front -Z [U+d, V+d]..[U+d+w, V+d+h]; +X side [U+d+w, V+d]..[U+2d+w, V+d+h]; back +Z [U+2d+w, V+d]..[U+2d+2w, V+d+h]. Per-corner mapping (x0/x1=min/max X etc.): top: (x1,z1)->(U+d+w,V) (x0,z1)->(U+d,V) (x0,z0)->(U+d,V+d) (x1,z0)->(U+d+w,V+d); bottom: (x1,z0)->(U+d+2w,V+d) (x0,z0)->(U+d+w,V+d) (x0,z1)->(U+d+w,V) (x1,z1)->(U+d+2w,V); -X: (y0,z0)->(U+d,V+d) (y0,z1)->(U,V+d) (y1,z1)->(U,V+d+h) (y1,z0)->(U+d,V+d+h); front -Z: (x1,y0)->(U+d+w,V+d) (x0,y0)->(U+d,V+d) (x0,y1)->(U+d,V+d+h) (x1,y1)->(U+d+w,V+d+h); +X: (y0,z1)->(U+2d+w,V+d) (y0,z0)->(U+d+w,V+d) (y1,z0)->(U+d+w,V+d+h) (y1,z1)->(U+2d+w,V+d+h); back +Z: (x0,y0)->(U+2d+2w,V+d) (x1,y0)->(U+2d+w,V+d) (x1,y1)->(U+2d+w,V+d+h) (x0,y1)->(U+2d+2w,V+d+h). MODEL -> ENTITY-LOCAL (blocks): q = p/16 + (0,-1.501,0); v = Ry(180deg - bodyYaw) * diag(-1,-1,1) * s * q (s = renderer scale: player 0.9375, horse 1.0 because its 1.1 lives in root pose). For bodyYaw=0: world = (s*px/16, s*(1.501 - py/16), -s*pz/16); model y=24 is the ground, model front (-Z) faces world +Z (MC yaw 0 = south). AMBIGUITIES / CAVEATS: (1) Player left_arm/left_leg in PlayerModel use their own UVs (32,48)/(16,48) and are NOT mirrored (the generic HumanoidModel mirrors (40,16)/(0,16) for the left side; PlayerModel replaces them). (2) The vanilla saddle model is a full copy of the horse mesh (all body cubes) plus the saddle parts, all drawn with saddle.png in alpha-cutout mode; the body-cube UV regions of saddle.png (v >= 21, and the ear/head rects) are fully transparent, so only the parts listed in horse.saddle_layer.parts are visible. Rebuilding just those parts is visually equivalent. (3) Tiny epsilons are intentional anti-z-fight offsets: body inflate 0.05, legs origin y -1.01, mane z 5.01, ears inflate -0.001, neck x -2.05. (4) Saddle reins (saddle_line) have zero width (size x = 0): a double-sided quad pair, rendered without culling. (5) Horse armor (HORSE_ARMOR layer) = same body mesh with inflate +0.1 on cubes that take the deformation parameter (head, mane, upper_mouth, legs, tail) - body/neck/ears keep their fixed values; not needed here. (6) Baby variants skipped.",
+  "player_wide": {
+    "tex": [
+      64,
+      64
+    ],
+    "renderer_scale": 0.9375,
+    "render_mode": "translucent (alpha-blended) with the skin texture; outer layers (hat/jacket/sleeves/pants) toggle with skin customisation flags",
+    "root_pose": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "parts": {
+      "head": {
+        "uv": [
+          0,
+          0
+        ],
+        "origin": [
+          -4,
+          -8,
+          -4
+        ],
+        "size": [
+          8,
+          8,
+          8
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "hat": {
+        "uv": [
+          32,
+          0
+        ],
+        "origin": [
+          -4,
+          -8,
+          -4
+        ],
+        "size": [
+          8,
+          8,
+          8
+        ],
+        "inflate": 0.5,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head",
+        "mirror": false
+      },
+      "body": {
+        "uv": [
+          16,
+          16
+        ],
+        "origin": [
+          -4,
+          0,
+          -2
+        ],
+        "size": [
+          8,
+          12,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "jacket": {
+        "uv": [
+          16,
+          32
+        ],
+        "origin": [
+          -4,
+          0,
+          -2
+        ],
+        "size": [
+          8,
+          12,
+          4
+        ],
+        "inflate": 0.25,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "body",
+        "mirror": false
+      },
+      "right_arm": {
+        "uv": [
+          40,
+          16
+        ],
+        "origin": [
+          -3,
+          -2,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          -5,
+          2,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "right_sleeve": {
+        "uv": [
+          40,
+          32
+        ],
+        "origin": [
+          -3,
+          -2,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.25,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "right_arm",
+        "mirror": false
+      },
+      "left_arm": {
+        "uv": [
+          32,
+          48
+        ],
+        "origin": [
+          -1,
+          -2,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          5,
+          2,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "left_sleeve": {
+        "uv": [
+          48,
+          48
+        ],
+        "origin": [
+          -1,
+          -2,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.25,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "left_arm",
+        "mirror": false
+      },
+      "right_leg": {
+        "uv": [
+          0,
+          16
+        ],
+        "origin": [
+          -2,
+          0,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          -1.9,
+          12,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "right_pants": {
+        "uv": [
+          0,
+          32
+        ],
+        "origin": [
+          -2,
+          0,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.25,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "right_leg",
+        "mirror": false
+      },
+      "left_leg": {
+        "uv": [
+          16,
+          48
+        ],
+        "origin": [
+          -2,
+          0,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          1.9,
+          12,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "left_pants": {
+        "uv": [
+          0,
+          48
+        ],
+        "origin": [
+          -2,
+          0,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          4
+        ],
+        "inflate": 0.25,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "left_leg",
+        "mirror": false
+      }
+    },
+    "rest_anim_offsets": {
+      "right_leg": {
+        "rot": [
+          0.0,
+          0.005,
+          0.005
+        ]
+      },
+      "left_leg": {
+        "rot": [
+          0.0,
+          -0.005,
+          -0.005
+        ]
+      },
+      "comment": "applied every frame by setupAnim on top of the walk swing (tiny splay)"
+    }
+  },
+  "horse": {
+    "tex": [
+      64,
+      64
+    ],
+    "renderer_scale": 1.0,
+    "render_mode": "alpha cutout, no backface culling; coat texture + optional markings overlay (translucent) on the same mesh",
+    "root_pose": {
+      "pivot": [
+        0.0,
+        -2.4016,
+        0.0
+      ],
+      "rot": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.1,
+        1.1,
+        1.1
+      ],
+      "comment": "Adult HORSE layer = base equine mesh with a 1.1 uniform scale baked into the ROOT pose (root.y = 24.016*(1-1.1) = -2.4016 px so the hooves stay on the ground; float value -2.4016006). Applies only to the root; children keep the listed pivots and are scaled by the root. Skeleton/zombie horses use the same mesh WITHOUT this root scale (root pose = identity). Saddle layer for the horse gets the same root pose."
+    },
+    "parts": {
+      "body": {
+        "uv": [
+          0,
+          32
+        ],
+        "origin": [
+          -5,
+          -8,
+          -17
+        ],
+        "size": [
+          10,
+          10,
+          22
+        ],
+        "inflate": 0.05,
+        "pivot": [
+          0,
+          11,
+          5
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "tail": {
+        "uv": [
+          42,
+          36
+        ],
+        "origin": [
+          -1.5,
+          0,
+          0
+        ],
+        "size": [
+          3,
+          14,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          -5,
+          2
+        ],
+        "rot": [
+          0.5235988,
+          0,
+          0
+        ],
+        "parent": "body",
+        "mirror": false
+      },
+      "head_parts": {
+        "uv": [
+          0,
+          35
+        ],
+        "origin": [
+          -2.05,
+          -6,
+          -2
+        ],
+        "size": [
+          4,
+          12,
+          7
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          4,
+          -12
+        ],
+        "rot": [
+          0.5235988,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false,
+        "comment": "the neck box; parent of head/mane/upper_mouth"
+      },
+      "head": {
+        "uv": [
+          0,
+          13
+        ],
+        "origin": [
+          -3,
+          -11,
+          -2
+        ],
+        "size": [
+          6,
+          5,
+          7
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head_parts",
+        "mirror": false
+      },
+      "left_ear": {
+        "uv": [
+          19,
+          16
+        ],
+        "origin": [
+          0.55,
+          -13,
+          4
+        ],
+        "size": [
+          2,
+          3,
+          1
+        ],
+        "inflate": -0.001,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head",
+        "mirror": false
+      },
+      "right_ear": {
+        "uv": [
+          19,
+          16
+        ],
+        "origin": [
+          -2.55,
+          -13,
+          4
+        ],
+        "size": [
+          2,
+          3,
+          1
+        ],
+        "inflate": -0.001,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head",
+        "mirror": false
+      },
+      "mane": {
+        "uv": [
+          56,
+          36
+        ],
+        "origin": [
+          -1,
+          -11,
+          5.01
+        ],
+        "size": [
+          2,
+          16,
+          2
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head_parts",
+        "mirror": false
+      },
+      "upper_mouth": {
+        "uv": [
+          0,
+          25
+        ],
+        "origin": [
+          -2,
+          -11,
+          -7
+        ],
+        "size": [
+          4,
+          5,
+          5
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": "head_parts",
+        "mirror": false
+      },
+      "left_hind_leg": {
+        "uv": [
+          48,
+          21
+        ],
+        "origin": [
+          -3,
+          -1.01,
+          -1
+        ],
+        "size": [
+          4,
+          11,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          4,
+          14,
+          7
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": true
+      },
+      "right_hind_leg": {
+        "uv": [
+          48,
+          21
+        ],
+        "origin": [
+          -1,
+          -1.01,
+          -1
+        ],
+        "size": [
+          4,
+          11,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          -4,
+          14,
+          7
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      },
+      "left_front_leg": {
+        "uv": [
+          48,
+          21
+        ],
+        "origin": [
+          -3,
+          -1.01,
+          -1.9
+        ],
+        "size": [
+          4,
+          11,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          4,
+          14,
+          -10
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": true
+      },
+      "right_front_leg": {
+        "uv": [
+          48,
+          21
+        ],
+        "origin": [
+          -1,
+          -1.01,
+          -1.9
+        ],
+        "size": [
+          4,
+          11,
+          4
+        ],
+        "inflate": 0.0,
+        "pivot": [
+          -4,
+          14,
+          -10
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "mirror": false
+      }
+    },
+    "saddle_layer": {
+      "tex": [
+        64,
+        64
+      ],
+      "texture": "assets/minecraft/textures/entity/equipment/horse_saddle/saddle.png",
+      "render_mode": "alpha cutout, no culling (armor cutout render type)",
+      "root_pose": "same as horse.root_pose",
+      "parents_refer_to": "horse.parts (the saddle model has the identical skeleton and runs the identical setupAnim, so it follows body/neck motion exactly)",
+      "parts": {
+        "saddle": {
+          "uv": [
+            26,
+            0
+          ],
+          "origin": [
+            -5,
+            -8,
+            -9
+          ],
+          "size": [
+            10,
+            9,
+            9
+          ],
+          "inflate": 0.5,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "parent": "body",
+          "mirror": false
+        },
+        "head_saddle": {
+          "uv": [
+            1,
+            1
+          ],
+          "origin": [
+            -3,
+            -11,
+            -1.9
+          ],
+          "size": [
+            6,
+            5,
+            6
+          ],
+          "inflate": 0.22,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false
+        },
+        "mouth_saddle_wrap": {
+          "uv": [
+            19,
+            0
+          ],
+          "origin": [
+            -2,
+            -11,
+            -4
+          ],
+          "size": [
+            4,
+            5,
+            2
+          ],
+          "inflate": 0.2,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false
+        },
+        "left_saddle_mouth": {
+          "uv": [
+            29,
+            5
+          ],
+          "origin": [
+            2,
+            -9,
+            -6
+          ],
+          "size": [
+            1,
+            2,
+            2
+          ],
+          "inflate": 0.0,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false
+        },
+        "right_saddle_mouth": {
+          "uv": [
+            29,
+            5
+          ],
+          "origin": [
+            -3,
+            -9,
+            -6
+          ],
+          "size": [
+            1,
+            2,
+            2
+          ],
+          "inflate": 0.0,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false
+        },
+        "left_saddle_line": {
+          "uv": [
+            32,
+            2
+          ],
+          "origin": [
+            3.1,
+            -6,
+            -8
+          ],
+          "size": [
+            0,
+            3,
+            16
+          ],
+          "inflate": 0.0,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            -0.5235988,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false,
+          "visible_when": "ridden"
+        },
+        "right_saddle_line": {
+          "uv": [
+            32,
+            2
+          ],
+          "origin": [
+            -3.1,
+            -6,
+            -8
+          ],
+          "size": [
+            0,
+            3,
+            16
+          ],
+          "inflate": 0.0,
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            -0.5235988,
+            0,
+            0
+          ],
+          "parent": "head_parts",
+          "mirror": false,
+          "visible_when": "ridden"
+        }
+      },
+      "how_rendered": "Equipment layer: HorseRenderer adds a SimpleEquipmentLayer of type HORSE_SADDLE using an EquineSaddleModel baked from layer HORSE_SADDLE. The saddle item's equippable asset id is 'minecraft:saddle'; assets/minecraft/equipment/saddle.json maps layer 'horse_saddle' -> texture 'minecraft:saddle'; the path is built as textures/entity/equipment/<layer_type>/<texture>.png."
+    }
+  },
+  "anim": {
+    "walk_state": "Per game tick: dist = distance moved this tick in blocks (horizontal; vertical too for some flyers); target = min(dist*4, 1); speed += (target - speed)*0.4; position += speed (adult positionScale 1, baby 3). At render (partial tick t): walkPos = (position - speed*(1-t))*positionScale; walkSpeed = min(lerp(t, speedOld, speed), 1). A passenger (e.g. player riding) gets walkPos = walkSpeed = 0. All poses are reset to the rest pose before setupAnim each frame, so '+=' below is relative to rest.",
+    "player": "p = walkPos, a = walkSpeed (0..1), k = speedValue (1, only >1 when elytra-flying). rightArm.rx = cos(0.6662p + pi) * a / k  (= -cos(0.6662p)*a/k); leftArm.rx = cos(0.6662p) * a / k  (amplitude 1.0 rad); rightLeg.rx = 1.4 * cos(0.6662p) * a / k; leftLeg.rx = 1.4 * cos(0.6662p + pi) * a / k  (amplitude 1.4 rad); legs also get ry/rz = +0.005 (right) / -0.005 (left). So right arm swings opposite to right leg. Head: head.rx = pitch_deg*pi/180 (positive = looking down), head.ry = (headYaw - bodyYaw)_deg*pi/180 (wrapped to -180..180; when riding a living mount the player's body yaw is solved from the mount's body yaw so that headYaw - bodyYaw stays within +-85 deg, with an extra 20% catch-up beyond 50 deg); hat follows as child. Idle arm bob (always): rightArm.rz += 0.05*cos(0.09*age) + 0.05, rightArm.rx += 0.05*sin(0.067*age); leftArm gets the same with opposite sign (rz -= ..., rx -= ...), age in ticks. Holding an item in a hand (ArmPose ITEM): that arm.rx = arm.rx*0.5 - pi/10, ry = 0. Riding (passenger): arms rx += -pi/5; legs rx = -1.4137167 (-81 deg), rightLeg ry = pi/10, rz = pi/40 (0.0785398), leftLeg ry = -pi/10, rz = -pi/40 (no walk swing since walkSpeed=0). Crouching: body.rx = 0.5; arms rx += 0.4; legs pivot z += 4; head pivot y += 4.2; body and arm pivots y += 3.2. Attack swing (progress f in 0..1, normal melee): body.ry = 0.2*sin(sqrt(f)*2pi) (negated for left-arm swing); arm pivots orbit: rightArm.(x,z) = (-5cos(body.ry), 5sin(body.ry)), leftArm.(x,z) = (5cos(body.ry), -5sin(body.ry)); both arms ry += body.ry, leftArm.rx += body.ry; then on the swinging arm with e = 1-(1-f)^4: rx -= 1.2*sin(e*pi) + sin(f*pi)*(0.7 - head.rx)*0.75; ry += 2*body.ry; rz -= 0.4*sin(f*pi).",
+    "horse": "Inputs: p = walkPos, a = walkSpeed (0..1), yawRel = clamp(headYaw - bodyYaw, -20, 20) deg, pitch = headPitch rad, age = ticks, eat/stand/feed = 0..1 blend factors (eating grass, rearing, mouth), r = ageScale (1 adult), n = 0.2 in water else 1. HEAD/NECK (head_parts, which carries head, ears, mane, mouth and saddle head straps): g = pitch; if a > 0.2: g += 0.15*a*cos(0.8p)  (head bob while walking). q = (1 - max(stand, eat)) * (pi/6 + g + feed*0.05*sin(age)); head_parts.rx = stand*(pi/12 + g) + eat*(2.1816616 + 0.05*sin(age)) + q  -> normal walking = pi/6 + g (30 deg rest tilt + pitch), grazing = ~125 deg (head down to the ground), rearing = 15 deg + pitch. head_parts.ry = (stand + 1 - max(stand, eat)) * yawRel*pi/180 (no yaw while grazing). head_parts.y += lerp(eat, lerp(stand, 0, -8r), 7r); head_parts.z = lerp(stand, -12, -4r). BODY: body.rx = -pi/4 * stand (rears up). LEGS: o = cos(0.6662*n*p + pi) (= -cos(0.6662*n*p)), L = 1 - stand. leftFront.rx = 0.8*o*a*L + stand*(-pi/3 + t), rightFront.rx = -0.8*o*a*L + stand*(-pi/3 - t), with t = cos(0.6*age + pi) (front-leg pawing while rearing); leftHind.rx = stand*pi/12 - 0.5*o*a*L, rightHind.rx = stand*pi/12 + 0.5*o*a*L. So front amplitude 0.8 rad, hind 0.5 rad, diagonal pairs move together (left-front with right-hind = trot). When rearing, both front leg pivots move: y -= 12*r*stand, z += 4*r*stand. TAIL: tail.rx = pi/6 + 0.75*a; tail pivot y += a*r, z += 2*a*r; tail.ry = cos(0.7*age) while the tail-swish timer is active, else 0. Saddle reins (left/right_saddle_line) visible only while ridden."
+  },
+  "assets": {
+    "client_jar": "spike\\w3paths.py mc_jar(): MCW_MC_JAR, %APPDATA%\\.minecraft\\versions\\1.21.11\\1.21.11.jar or ~\\.gradle\\caches\\fabric-loom\\1.21.11\\minecraft-client.jar",
+    "client_jar_note": "vanilla 1.21.11 client jar (version.json id = 1.21.11) with assets/; all paths below are in-jar paths; all listed PNGs are 64x64",
+    "horse_textures": [
+      "assets/minecraft/textures/entity/horse/horse_white.png",
+      "assets/minecraft/textures/entity/horse/horse_creamy.png",
+      "assets/minecraft/textures/entity/horse/horse_chestnut.png",
+      "assets/minecraft/textures/entity/horse/horse_brown.png",
+      "assets/minecraft/textures/entity/horse/horse_black.png",
+      "assets/minecraft/textures/entity/horse/horse_gray.png",
+      "assets/minecraft/textures/entity/horse/horse_darkbrown.png"
+    ],
+    "horse_markings_overlays": [
+      "assets/minecraft/textures/entity/horse/horse_markings_white.png",
+      "assets/minecraft/textures/entity/horse/horse_markings_whitefield.png",
+      "assets/minecraft/textures/entity/horse/horse_markings_whitedots.png",
+      "assets/minecraft/textures/entity/horse/horse_markings_blackdots.png"
+    ],
+    "other_equine_textures": [
+      "assets/minecraft/textures/entity/horse/horse_skeleton.png",
+      "assets/minecraft/textures/entity/horse/horse_zombie.png",
+      "assets/minecraft/textures/entity/horse/donkey.png",
+      "assets/minecraft/textures/entity/horse/mule.png"
+    ],
+    "saddle_texture": "assets/minecraft/textures/entity/equipment/horse_saddle/saddle.png",
+    "saddle_equipment_def": "assets/minecraft/equipment/saddle.json",
+    "horse_armor_textures_dir": "assets/minecraft/textures/entity/equipment/horse_body/ (leather, leather_overlay, copper, iron, gold, diamond, netherite)",
+    "steve": "assets/minecraft/textures/entity/player/wide/steve.png",
+    "default_skins_dirs": [
+      "assets/minecraft/textures/entity/player/wide/ (alex ari efe kai makena noor steve sunny zuri)",
+      "assets/minecraft/textures/entity/player/slim/ (same 9 names)"
+    ],
+    "sources_jar": "mcclient\\.gradle\\loom-cache\\minecraftMaven\\net\\minecraft\\minecraft-merged-2ae02fda0f\\1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2\\minecraft-merged-2ae02fda0f-1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2-sources.jar"
+  }
+}

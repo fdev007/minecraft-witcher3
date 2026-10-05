@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="380" viewBox="0 0 560 380" font-family="Segoe UI, Arial, sans-serif">
+  <title>Раскладка атласа граней куба (mc_textures.py / cube_mesh.py)</title>
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#f2f2f2"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#c8c8c8" stroke-width="3"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect width="560" height="380" fill="#ffffff"/>
+  <text x="20" y="22" font-size="14" font-weight="600" fill="#222">atlas/&lt;блок&gt;.png: 4×2 клетки по 256 px = 1024×512</text>
+  <text x="20" y="40" font-size="12" fill="#555">u вправо, v вниз от левого верхнего угла (в OBJ/FBX v = 1 − v)</text>
+  <g transform="translate(20,52)" font-size="12" fill="#222">
+    <!-- ряд 0 -->
+    <rect x="0" y="0" width="128" height="128" fill="#dbe8f5" stroke="#333"/>
+    <rect x="128" y="0" width="128" height="128" fill="#e3f1dc" stroke="#333"/>
+    <rect x="256" y="0" width="128" height="128" fill="#f5e6d3" stroke="#333"/>
+    <rect x="384" y="0" width="128" height="128" fill="#efe0f2" stroke="#333"/>
+    <!-- ряд 1 -->
+    <rect x="0" y="128" width="128" height="128" fill="#fff5c4" stroke="#333"/>
+    <rect x="128" y="128" width="128" height="128" fill="#e4e4e4" stroke="#333"/>
+    <rect x="256" y="128" width="128" height="128" fill="url(#hatch)" stroke="#333"/>
+    <rect x="384" y="128" width="128" height="128" fill="url(#hatch)" stroke="#333"/>
+
+    <g font-size="15" font-weight="600">
+      <text x="10" y="22">north</text><text x="138" y="22">west</text>
+      <text x="266" y="22">south</text><text x="394" y="22">east</text>
+      <text x="10" y="150">up</text><text x="138" y="150">down</text>
+    </g>
+    <g fill="#555">
+      <text x="10" y="40">0,0 · +Y Ведьмака</text><text x="138" y="40">1,0 · −X</text>
+      <text x="266" y="40">2,0 · −Y</text><text x="394" y="40">3,0 · +X</text>
+      <text x="10" y="168">0,1 · +Z</text><text x="138" y="168">1,1 · −Z</text>
+      <text x="266" y="150">2,1: копия south,</text><text x="266" y="166">отражённая ↕</text>
+      <text x="394" y="150">3,1: копия east,</text><text x="394" y="166">отражённая ↕</text>
+      <text x="266" y="186">(против протекания</text><text x="266" y="202">мипов, UV туда нет)</text>
+    </g>
+    <!-- стрелки "верх картинки" -->
+    <g stroke="#333" stroke-width="1.5" marker-end="url(#arr)">
+      <line x1="64" y1="110" x2="64" y2="62"/>
+      <line x1="192" y1="110" x2="192" y2="62"/>
+      <line x1="320" y1="110" x2="320" y2="62"/>
+      <line x1="448" y1="110" x2="448" y2="62"/>
+      <line x1="64" y1="240" x2="64" y2="192"/>
+      <line x1="192" y1="240" x2="192" y2="192"/>
+    </g>
+    <g fill="#333" font-size="11">
+      <text x="70" y="96">вверх</text><text x="198" y="96">вверх</text>
+      <text x="326" y="96">вверх</text><text x="454" y="96">вверх</text>
+      <text x="70" y="226">север</text><text x="198" y="226">юг</text>
+    </g>
+  </g>
+  <g font-size="12" fill="#222">
+    <text x="20" y="326">Стрелка - куда на кубе смотрит верх картинки. У up и down право - восток.</text>
+    <text x="20" y="344">Грани названы как в Minecraft, рядом - нормаль в осях Ведьмака (X восток, Y север, Z вверх).</text>
+    <text x="20" y="362">Ряд 0 - обход по бокам: правый край клетки примыкает к левому краю следующей.</text>
+  </g>
+</svg>
