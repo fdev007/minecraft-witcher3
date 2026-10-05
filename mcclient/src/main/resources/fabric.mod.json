@@ -1,0 +1,18 @@
+{
+	"schemaVersion": 1,
+	"id": "mcwc",
+	"version": "${version}",
+	"name": "MCW client (Minecraft x Witcher 3, hidden client)",
+	"description": "Hidden Minecraft client for the Minecraft-in-The-Witcher-3 mashup: plays Geralt on the MCW server, draws only the hand, held item and HUD on a key colour for the overlay, takes input from the bridge.",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["mcwc.Mcwc"]
+	},
+	"mixins": ["mcwc.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

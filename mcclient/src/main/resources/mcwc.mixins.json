@@ -1,0 +1,10 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "mcwc.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": ["AbstractArrowAccessor", "BlockStateMixin", "ClientPacketListenerMixin", "EntityMixin", "GameRendererMixin", "GuiMixin", "KeyboardHandlerAccessor",
+		"LevelRendererAccessor", "LevelRendererMixin", "LivingEntityMixin", "MinecraftMixin", "MouseHandlerAccessor", "MouseHandlerMixin", "MultiPlayerGameModeAccessor", "OptionsMixin", "PlayerMixin",
+		"ScreenMixin", "WindowMixin"],
+	"injectors": { "defaultRequire": 1 }
+}

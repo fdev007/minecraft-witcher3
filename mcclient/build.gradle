@@ -1,0 +1,44 @@
+plugins {
+	// 1.21.11 ещё обфусцирован -> remap-вариант Loom, как у серверного мода (..\mc)
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+}
+
+loom {
+	runs {
+		client {
+			// клиент из dev-окружения Loom: свой run/, к .minecraft лаунчера не прикасается. Ник = имя Геральта в
+			// ..\mc\run\config\mcw.properties (name), сервер offline-mode на 127.0.0.1. Размер окна потом задаёт оверлей
+			runDir "run"
+			programArgs "--username", "Geralt", "--quickPlayMultiplayer", "127.0.0.1:25565"
+			// флаги мода для JVM игры через запятую: -PmcwcVm=-Dmcwc.sound=true,-Dmcwc.decorated=true (run_client.ps1)
+			def vm = providers.gradleProperty('mcwcVm').orNull
+			if (vm) {
+				vmArgs(vm.split(',') as List)
+			}
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// JSON — Gson из Minecraft, TCP — java.net, окно — JNA из Minecraft; своих библиотек нет
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+	filesMatching("fabric.mod.json") { expand "version": version }
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+	it.options.encoding = "UTF-8"
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}

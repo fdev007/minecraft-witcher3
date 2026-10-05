@@ -1,0 +1,29 @@
+# Gradle и IDE
+.gradle/
+build/
+out/
+classes/
+bin/
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+*.launch
+__pycache__/
+
+# сервер Майнкрафта в run/: мир, логи, скачанное лаунчером (libraries, versions, .fabric), jar-ы, eula, конфиги
+# сервера — всё локальное. Явно то, что нельзя упустить, и на всякий случай — вся папка.
+run/world/
+run/logs/
+run/libraries/
+run/*.jar
+run/
+run-dev/
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
