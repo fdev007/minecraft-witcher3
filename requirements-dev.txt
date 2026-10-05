@@ -1,0 +1,4 @@
+# Tests and lint (the runtime needs only the Python standard library; Pillow is for tools\mc_textures.py)
+-r tools/requirements.txt
+pytest==8.3.4
+ruff==0.15.5

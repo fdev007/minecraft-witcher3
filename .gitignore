@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+.venv/
+
+# Gradle and IDEs (mc/ and mcclient/ have their own .gitignore too)
+.gradle/
+build/
+out/
+.idea/
+.vscode/
+*.iml
+
+# Minecraft server and client runtime: worlds, logs, downloaded jars, EULA acceptance, configs
+mc/run/
+mc/run-dev/
+mcclient/run/
+
+# Bridge logs and per-machine settings (mcw.ps1 install writes lite mode there)
+bridge/logs/
+bridge/bridge.local.toml
+
+# Overlay build output (attached to GitHub releases instead)
+overlay/*.exe
+overlay/*.obj
+overlay/*.pdb
+
+# Skins have no redistribution license (assets_local/skins/README.md)
+assets_local/skins/*.png
+
+# Release packaging
+dist/
+
+# Secrets never belong here
+.env
+.env.*
+*.env
+*.pem
+*.key
+credentials*
