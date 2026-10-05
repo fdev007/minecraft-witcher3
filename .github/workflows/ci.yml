@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements-dev.txt
+      - run: ruff check .
+      - name: spike
+        working-directory: spike
+        run: python -m pytest -q
+      - name: bridge
+        working-directory: bridge
+        run: python -m pytest -q
+      - name: tools
+        working-directory: tools
+        run: python -m pytest -q
+      - name: mc (fake bridge)
+        working-directory: mc
+        run: python -m pytest -q test_fake_bridge.py
+
+  java:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: server mod
+        working-directory: mc
+        run: .\gradlew.bat build --console=plain
+      - name: client mod
+        working-directory: mcclient
+        run: .\gradlew.bat build --console=plain
+
+  overlay:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        shell: cmd
+        run: overlay\build.bat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcw_overlay
+          path: overlay/mcw_overlay.exe

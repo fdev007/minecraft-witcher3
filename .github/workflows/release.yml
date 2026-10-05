@@ -1,0 +1,22 @@
+name: Release
+
+# Push a tag like v0.1.0: builds the overlay and creates a draft release with mcw_overlay.exe attached.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build overlay
+        shell: cmd
+        run: overlay\build.bat
+      - name: draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" overlay/mcw_overlay.exe --draft --title "${{ github.ref_name }}" --notes-file CHANGELOG.md
