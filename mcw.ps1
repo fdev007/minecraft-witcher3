@@ -315,7 +315,8 @@ function Invoke-Install {
 
     Step 'Witcher 3 script mod (modMCW)' 'Скриптовый мод Ведьмака (modMCW)'
     $state = Get-State
-    & (Join-Path $Root 'spike\install_mod.ps1') -GamePath $paths.game | Where-Object { $_ -notmatch '^\s' } | ForEach-Object { Write-Host "   $_" -ForegroundColor DarkGray }
+    & (Join-Path $Root 'spike\install_mod.ps1') -GamePath $paths.game | Out-Null     # его вывод — по-русски и подробный
+    Write-Host ('   ' + (Join-Path $Root 'spike\mod\modMCW') + ' -> ' + (Join-Path $paths.game 'mods\modMCW')) -ForegroundColor DarkGray
     $hash = Get-ScriptsHash (Join-Path $Root 'spike\mod\modMCW')
     $force = [bool]$state.force -or ($hash -ne $state.scripts)
 
@@ -485,7 +486,9 @@ function Invoke-Uninstall {
         $d = Join-Path $mods $n
         if (Test-Path -LiteralPath $d) { Remove-Item -LiteralPath $d -Recurse -Force; Say "   removed $d" "   удалено $d" }
     }
-    & (Join-Path $Root 'spike\uninstall_mod.ps1') -GamePath $game -Probe | ForEach-Object { Write-Host "   $_" }
+    & (Join-Path $Root 'spike\uninstall_mod.ps1') -GamePath $game -Probe | ForEach-Object {
+        if ($_ -match '^удалено(?: \(пустая\))?: (.+)$') { Say "   removed $($Matches[1])" "   удалено $($Matches[1])" }
+    }
     Set-LiteConfig $false
     if ($Purge) {
         foreach ($n in 'tex', 'redkit_work', 'redkit_models', 'logs', 'state.json') {
